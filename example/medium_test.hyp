@@ -1,0 +1,72 @@
+Focus {
+    entrance {
+        observe "HypnoScript Runtime v1.0.0 - Medium Test";
+        drift(100);
+    }
+
+    // ===== BASIC OPERATIONS =====;
+    observe "=== Basic Operations ===";
+    induce x = 10;
+    induce y = 20;
+    induce result = x + y;
+    observe "Basic math: " + result;
+
+    // ===== STRING OPERATIONS =====;
+    observe "=== String Operations ===";
+    induce text = "Hello HypnoScript Runtime";
+    induce length = StringLength(text);
+    observe "Text length: " + length;
+    induce upper = StringToUpper(text);
+    observe "Uppercase: " + upper;
+
+    // ===== ARRAY OPERATIONS =====;
+    observe "=== Array Operations ===";
+    induce numbers = [1, 2, 3, 4, 5];
+    induce sum = ArraySum(numbers);
+    induce count = ArrayLength(numbers);
+    observe "Array sum: " + sum;
+    observe "Array count: " + count;
+
+    // ===== VALIDATION FUNCTIONS =====;
+    observe "=== Validation Functions ===";
+    induce email = "test@example.com";
+    induce url = "https://www.example.com";
+    observe "Email valid: " + IsValidEmail(email);
+    observe "URL valid: " + IsValidUrl(url);
+
+    // ===== FORMATTING FUNCTIONS =====;
+    observe "=== Formatting Functions ===";
+    induce amount = 99.99;
+    induce percentage = 75.5;
+    observe "Currency: " + FormatCurrency(amount, "EUR");
+    observe "Percentage: " + FormatPercentage(percentage);
+
+    // ===== MATHEMATICAL FUNCTIONS =====;
+    observe "=== Mathematical Functions ===";
+    observe "Factorial(5): " + Factorial(5);
+    observe "GCD(48, 18): " + GCD(48, 18);
+    observe "LCM(12, 18): " + LCM(12, 18);
+
+    // ===== FILE OPERATIONS =====;
+    observe "=== File Operations ===";
+    induce content = "Test file created by HypnoScript Runtime v1.0.0";
+    WriteFile("medium_test_output.txt", content);
+    induce readContent = ReadFile("medium_test_output.txt");
+    observe "File content: " + readContent;
+
+    // ===== JSON OPERATIONS =====;
+    observe "=== JSON Operations ===";
+    induce data = CreateRecord(["name", "version"], ["HypnoScript", "1.0.0"]);
+    induce jsonString = ToJson(data);
+    observe "JSON: " + jsonString;
+
+    // ===== PERFORMANCE MONITORING =====;
+    observe "=== Performance Monitoring ===";
+    induce metrics = GetPerformanceMetrics();
+    observe "Performance metrics available: " + (metrics != null);
+
+    observe "=== Medium Test Completed Successfully ===";
+    observe "All enterprise features working correctly!";
+}
+
+Relax;

@@ -1,0 +1,18 @@
+Focus {
+    entrance {
+        observe "Welcome to HypnoScript!";
+    }
+
+    induce x: number = 42;
+    induce message: string = "Hello Trance";
+
+    observe message;
+    observe x;
+
+    if (x > 40) deepFocus {
+        observe "X is greater than 40";
+    }
+
+    induce sum: number = x + 8;
+    observe sum;
+} Relax;

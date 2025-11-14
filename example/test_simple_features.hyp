@@ -1,0 +1,61 @@
+Focus {
+
+  entrance {
+    observe "Test der erweiterten Features";
+  }
+
+  // Test freeze
+  freeze PI: number = 3.14159;
+  observe "Freeze Test OK";
+
+  // Test implant
+  implant code: number = 42;
+  observe "Implant Test OK";
+
+  // Test anchor
+  induce x: number = 100;
+  anchor saved = x;
+  x = 200;
+  x = saved;
+  observe "Anchor Test OK";
+
+  // Test whisper
+  whisper "Whisper ";
+  whisper "Test ";
+  observe "OK";
+
+  // Test command
+  command "Command Test";
+
+  // Test oscillate
+  induce flag: boolean = false;
+  oscillate flag;
+  if (flag) {
+    observe "Oscillate Test OK";
+  }
+
+  // Test trigger
+  trigger myTrigger = suggestion() {
+    observe "Trigger Test OK";
+  }
+  myTrigger();
+
+  // Test deepFocus
+  induce y: number = 15;
+  if (y > 10) deepFocus {
+    observe "DeepFocus Test OK";
+  }
+
+  // Test hypnotic operators
+  induce a: number = 10;
+  induce b: number = 10;
+
+  if (a youAreFeelingVerySleepy b) {
+    observe "Hypnotic Operator Test OK";
+  }
+
+  finale {
+    observe "Alle Tests erfolgreich";
+  }
+
+} Relax

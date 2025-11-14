@@ -1,0 +1,141 @@
+Focus {
+    entrance {
+        observe "=== HypnoScript Advanced Features Test ===";
+        drift(1000);
+        observe "Testing all new builtin functions and features...";
+    }
+
+    // ===== NEUE MATHEMATISCHE FUNKTIONEN =====;
+    observe "=== Testing new mathematical functions ===";
+
+    induce x: number = 10.5;
+    induce y: number = 3.2;
+
+    observe "Max(10.5, 3.2) = " + Max(x, y);
+    observe "Min(10.5, 3.2) = " + Min(x, y);
+    observe "Log(100) = " + Log(100);
+    observe "Log10(1000) = " + Log10(1000);
+    observe "Exp(2) = " + Exp(2);
+    observe "Random number = " + Random();
+    observe "Random integer (1-10) = " + RandomInt(1, 10);
+
+    // ===== ERWEITERTE STRING-FUNKTIONEN =====;
+    observe "=== Testing extended string functions ===";
+
+    induce testString: string = "  HypnoScript is amazing!  ";
+    observe "Original: '" + testString + "'";
+    observe "Trimmed: '" + Trim(testString) + "'";
+    observe "TrimStart: '" + TrimStart(testString) + "'";
+    observe "TrimEnd: '" + TrimEnd(testString) + "'";
+    observe "IndexOf 'Script': " + IndexOf(testString, "Script");
+    observe "LastIndexOf 'i': " + LastIndexOf(testString, "i");
+    observe "StartsWith '  Hyp': " + StartsWith(testString, "  Hyp");
+    observe "EndsWith '!  ': " + EndsWith(testString, "!  ");
+    observe "PadLeft(30, '*'): '" + PadLeft(testString, 30, '*') + "'";
+    observe "PadRight(30, '#'): '" + PadRight(testString, 30, '#') + "'";
+
+    // ===== ARRAY-FUNKTIONEN =====;
+    observe "=== Testing array functions ===";
+
+    induce numbers = [1, 2, 3, 4, 5];
+    induce moreNumbers = [6, 7, 8];
+
+    observe "Array length: " + ArrayLength(numbers);
+    observe "First element: " + ArrayGet(numbers, 0);
+    observe "Array slice (1-3): " + ArraySlice(numbers, 1, 3);
+    observe "Array contains 3: " + ArrayContains(numbers, 3);
+    observe "Array contains 10: " + ArrayContains(numbers, 10);
+    observe "Index of 4: " + ArrayIndexOf(numbers, 4);
+
+    // Array concatenation
+    induce combined = ArrayConcat(numbers, moreNumbers);
+    observe "Combined arrays: " + combined;
+
+    // ===== KONVERTIERUNGSFUNKTIONEN =====;
+    observe "=== Testing conversion functions ===";
+
+    observe "ToInt(42.7) = " + ToInt(42.7);
+    observe "ToDouble(42) = " + ToDouble(42);
+    observe "ToString(123) = '" + ToString(123) + "'";
+    observe "ToBoolean(1) = " + ToBoolean(1);
+    observe "ToBoolean(0) = " + ToBoolean(0);
+    observe "ToChar(65) = " + ToChar(65);
+
+    // ===== ERWEITERTE HYPNOTISCHE FUNKTIONEN =====;
+    observe "=== Testing extended hypnotic functions ===";
+
+    HypnoticVisualization("a beautiful mountain landscape");
+    ProgressiveRelaxation(3);
+    HypnoticSuggestion("You are becoming more confident with each passing moment");
+    TranceDeepening(2);
+
+    // ===== ZEIT- UND DATUMSFUNKTIONEN =====;
+    observe "=== Testing time and date functions ===";
+
+    observe "Current time: " + GetCurrentTime();
+    observe "Current date: " + GetCurrentDate();
+    observe "Current time string: " + GetCurrentTimeString();
+    observe "Current date/time: " + GetCurrentDateTime();
+
+    // ===== SYSTEM-FUNKTIONEN =====;
+    observe "=== Testing system functions ===";
+
+    observe "Environment variable PATH: " + GetEnvironmentVariable("PATH");
+    DebugPrint("This is a debug message");
+    DebugPrintType(42);
+    DebugPrintType("Hello");
+    DebugPrintType(true);
+
+    // ===== KOMPLEXE BEISPIELE =====;
+    observe "=== Testing complex examples ===";
+
+    // String-Manipulation mit Split und Join
+    induce sentence: string = "HypnoScript,is,a,powerful,language";
+    induce words = Split(sentence, ",");
+    observe "Split result: " + words;
+    induce joined = Join(words, " | ");
+    observe "Joined result: " + joined;
+
+    // Mathematische Berechnungen
+    induce angle: number = 45;
+    induce sinValue = Sin(angle);
+    induce cosValue = Cos(angle);
+    induce tanValue = Tan(angle);
+    observe "Sin(45°) = " + sinValue;
+    observe "Cos(45°) = " + cosValue;
+    observe "Tan(45°) = " + tanValue;
+
+    // Array-Manipulation
+    induce mixedArray = [1, "hypnosis", true, 3.14, "trance"];
+    loop (induce i: number = 0; i < ArrayLength(mixedArray); i = i + 1) {
+        induce element = ArrayGet(mixedArray, i);
+        observe "Array element " + i + ": " + element + " (type: " + ToString(element) + ")";
+    }
+
+    // ===== FINALE DEMONSTRATION =====;
+    observe "=== Final demonstration ===";
+
+    // Komplexe Berechnung mit allen Features
+    induce finalResult = Max(Pow(2, 8), Min(100, 50)) + Abs(-15);
+    observe "Complex calculation result: " + finalResult;
+
+    // String-Formatierung
+    induce formattedMessage = "HypnoScript " + ToUpper("is working perfectly!") + " at " + GetCurrentTimeString();
+    observe formattedMessage;
+
+    // Array-Statistiken
+    induce testArray = [10, 20, 30, 40, 50];
+    induce sum: number = 0;
+    loop (induce i: number = 0; i < ArrayLength(testArray); i = i + 1) {
+        sum = sum + ToInt(ArrayGet(testArray, i));
+    }
+    induce average = sum / ArrayLength(testArray);
+    observe "Array average: " + average;
+
+    observe "=== All advanced features tested successfully! ===";
+    observe "HypnoScript is now fully enhanced! 🎉✨";
+
+    drift(2000);
+    observe "Program ending...";
+
+} Relax

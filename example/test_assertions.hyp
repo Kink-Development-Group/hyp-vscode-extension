@@ -1,0 +1,39 @@
+Focus {
+    entrance {
+        observe "Testing assert statements...";
+    }
+
+    // Test 1: Einfache Assertion - sollte erfolgreich sein
+    induce x: number = 42;
+    assert(x == 42);
+    observe "Test 1 passed: x equals 42";
+
+    // Test 2: String-Vergleich - sollte erfolgreich sein
+    induce name: string = "HypnoScript";
+    assert(name == "HypnoScript");
+    observe "Test 2 passed: name equals HypnoScript";
+
+    // Test 3: Boolean-Test - sollte erfolgreich sein
+    induce isTrue: boolean = true;
+    assert(isTrue);
+    observe "Test 3 passed: isTrue is true";
+
+    // Test 4: Mathematische Operation - sollte erfolgreich sein
+    induce a: number = 10;
+    induce b: number = 5;
+    induce sum: number = a + b;
+    assert(sum == 15);
+    observe "Test 4 passed: 10 + 5 = 15";
+
+    // Test 5: Array-Test - sollte erfolgreich sein
+    induce arr = [1, 2, 3, 4, 5];
+    assert(ArrayGet(arr, 0) == 1);
+    assert(ArrayGet(arr, 4) == 5);
+    observe "Test 5 passed: Array access works";
+
+    // Test 6: Fehlschlagende Assertion - sollte fehlschlagen
+    induce shouldFail: number = 0;
+    assert(shouldFail == 1) "This assertion should fail because 0 != 1";
+
+    observe "All tests completed!";
+} Relax;
