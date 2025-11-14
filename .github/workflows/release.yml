@@ -31,6 +31,17 @@ jobs:
       - name: 📦 Package VSCode Extension
         run: npx vsce package
 
+      - name: 🗃️ Erfasse VSIX-Artefakt
+        id: artifact
+        run: |
+          VSIX_FILE=$(find . -maxdepth 1 -type f -name '*.vsix' -print -quit)
+          if [ -z "$VSIX_FILE" ]; then
+            echo "❌ Keine VSIX-Datei gefunden" >&2
+            exit 1
+          fi
+          VSIX_FILE="${VSIX_FILE#./}"
+          echo "vsix=$VSIX_FILE" >> $GITHUB_OUTPUT
+
       - name: 🔍 Check if Release Exists
         id: check_release
         run: |
@@ -45,12 +56,20 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🗂️ Upload Artifact to GitHub Releases
+        if: steps.check_release.outputs.release_exists != 'true'
         uses: softprops/action-gh-release@v1
         with:
-          files: "*.vsix"
+          files: ${{ steps.artifact.outputs.vsix }}
           tag_name: ${{ github.ref }}
           body: "🚀 New release of HypnoScript Extension!"
           fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🔁 Aktualisiere bestehendes Release
+        if: steps.check_release.outputs.release_exists == 'true'
+        run: |
+          gh release upload ${{ github.ref_name }} "${{ steps.artifact.outputs.vsix }}" --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
