@@ -13,16 +13,13 @@ import {
 import { logger } from './config';
 import { t } from './i18n';
 import { LocalTranslations } from './interfaces/localTranslations';
-import {
-  keywordCompletionList,
-  standardLibraryFunctions,
-} from './languageFacts';
+import { keywordCompletionList, standardLibraryFunctions } from './languageFacts';
 
 // Verbindung zum Editor herstellen
 const connection = createConnection(ProposedFeatures.all);
 const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
-connection.onInitialize((params: InitializeParams): InitializeResult => {
+connection.onInitialize((_params: InitializeParams): InitializeResult => {
   return {
     capabilities: {
       textDocumentSync: TextDocumentSyncKind.Full,
@@ -34,7 +31,7 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
   };
 });
 
-connection.onRequest('textDocument/diagnostic', async (params) => {
+connection.onRequest('textDocument/diagnostic', (_params) => {
   try {
     return {
       items: [
@@ -49,15 +46,13 @@ connection.onRequest('textDocument/diagnostic', async (params) => {
       ],
     };
   } catch (error) {
-    logger.error(
-      t('error_in_diagnostic_request' as keyof LocalTranslations) + error
-    );
+    logger.error(t('error_in_diagnostic_request' as keyof LocalTranslations) + String(error));
     throw error;
   }
 });
 
 // 🔍 Auto-Completion Handler
-connection.onCompletion((_textDocumentPosition) => {
+connection.onCompletion(() => {
   const keywordSuggestions = keywordCompletionList.map((keyword) => ({
     label: keyword,
     kind: CompletionItemKind.Keyword,
@@ -197,26 +192,11 @@ documents.onDidChangeContent((change) => {
   try {
     const diagnostics: Diagnostic[] = [];
     diagnostics.push(...checkSyntaxErrors(change.document));
-    connection.sendDiagnostics({ uri: change.document.uri, diagnostics });
+    void connection.sendDiagnostics({ uri: change.document.uri, diagnostics });
   } catch (error) {
-    logger.error('Fehler beim Verarbeiten von Inhaltänderungen: ' + error);
+    logger.error('Fehler beim Verarbeiten von Inhaltänderungen: ' + String(error));
   }
 });
-
-function getWordRangeAtPosition(
-  document: TextDocument,
-  position: { line: number; character: number }
-) {
-  const text = document.getText();
-  const lines = text.split('\n');
-  const line = lines[position.line];
-  const start = line.lastIndexOf(' ', position.character) + 1;
-  const end = line.indexOf(' ', position.character);
-  return {
-    start: { line: position.line, character: start },
-    end: { line: position.line, character: end === -1 ? line.length : end },
-  };
-}
 
 documents.listen(connection);
 connection.listen();

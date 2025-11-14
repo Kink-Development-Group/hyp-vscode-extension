@@ -1,17 +1,230 @@
 Focus {
 
-  entrance {
-      observe "Countdown startet...";
-  }
+    entrance {
+        observe "Willkommen in der erweiterten HypnoScript-Welt!";
+        drift(1000);
+        observe "Alle neuen Features werden jetzt demonstriert...";
+        drift(500);
+    }
 
-  induce count: number = 5;
+    // ===== GRUNDLEGENDE FEATURES =====;
 
-  while (count > 0) {
-      observe count;
-      drift(1000); // 1 Sekunde warten
-      count = count - 1;
-  }
+    // Variablendeklarationen mit verschiedenen Typen
+    induce greeting: string = "Hello from HypnoScript!";
+    induce counter: number = 0;
+    induce isActive: boolean = true;
+    induce userInput: string from external;
 
-  observe "Hypnose aktiviert!";
+    // Mathematische Berechnungen
+    induce x: number = 10;
+    induce y: number = 5;
+    induce result: number = x * y + 15;
+
+    // ===== ERWEITERTE DATENSTRUKTUREN =====;
+
+    // Tranceify-Struktur definieren
+    tranceify HypnoRecord {
+        name: string;
+        age: number;
+        isInTrance: boolean;
+        tranceLevel: number;
+    }
+
+    // Record-Instanz erstellen
+    induce record = HypnoRecord {
+        name: "Alice",
+        age: 30,
+        isInTrance: true,
+        tranceLevel: 8.5
+    };
+
+    // Feldzugriff auf Record
+    observe "Record Name: " + record.name;
+    observe "Trance Level: " + record.tranceLevel;
+
+    // ===== OBJEKTORIENTIERUNG =====;
+
+    // Session (Klasse) definieren
+    session Person {
+        expose name: string;
+        expose tranceLevel: number;
+        conceal secretId: number;
+
+        suggestion constructor(newName: string, id: number) {
+            this.name = newName;
+            this.secretId = id;
+            this.tranceLevel = 0;
+        }
+
+        suggestion enterTrance() {
+            this.tranceLevel = this.tranceLevel + 1;
+            observe this.name + " enters deeper trance...";
+        }
+
+        suggestion greet() {
+            observe "Hello, " + this.name + " (Trance Level: " + this.tranceLevel + ")";
+        }
+
+        suggestion deepTrance() {
+            while (this.tranceLevel < 10) {
+                this.enterTrance();
+                drift(500);
+            }
+            observe this.name + " is now in deep trance!";
+        }
+    }
+
+    // Session-Instanzen erstellen
+    induce person1 = Person("Bob", 123);
+    induce person2 = Person("Charlie", 456);
+
+    // Methoden aufrufen
+    person1.greet();
+    person1.enterTrance();
+    person1.greet();
+
+    // ===== KONTROLLSTRUKTUREN =====;
+
+    // If-Else mit hypnotischen Operatoren
+    if (counter youAreFeelingVerySleepy 0) deepFocus {
+        observe "Counter is zero - starting fresh!";
+    } else if (counter lookAtTheWatch 5) deepFocus {
+        observe "Counter is getting higher...";
+    } else deepFocus {
+        observe "Counter is in the middle range.";
+    }
+
+    // While-Schleife mit hypnotischen Operatoren
+    while (counter fallUnderMySpell 5) {
+        counter = counter + 1;
+        observe "Counter: " + counter;
+        drift(200);
+    }
+
+    // Loop-Statement (ähnlich for-Schleife)
+    loop (induce i: number = 0; i < 3; i = i + 1) {
+        if (i youAreFeelingVerySleepy 1) deepFocus {
+            observe "First iteration!";
+        } else if (i lookAtTheWatch 2) deepFocus {
+            snap;  // Break aus der Schleife
+        }
+        observe "Loop iteration: " + i;
+    }
+
+    // ===== FUNKTIONEN =====;
+
+    // Funktion mit Rückgabewert
+    suggestion add(a: number, b: number): number {
+        awaken a + b;
+    }
+
+    // Funktion ohne Rückgabewert (imperative)
+    imperative suggestion printHypnoticMessage(message: string) {
+        observe "*** " + message + " ***";
+        drift(1000);
+    }
+
+    // Funktion mit mehreren Parametern
+    suggestion calculateTranceLevel(baseLevel: number, bonus: number): number {
+        induce result: number = baseLevel + bonus;
+        if (result lookAtTheWatch 10) deepFocus {
+            result = 10;  // Maximum trance level
+        }
+        awaken result;
+    }
+
+    // Funktionsaufrufe
+    induce sum = call add(5, 7);
+    observe "Sum: " + sum;
+
+    printHypnoticMessage("You are feeling very relaxed...");
+
+    induce tranceLevel = calculateTranceLevel(6, 3);
+    observe "Calculated trance level: " + tranceLevel;
+
+    // ===== ARRAYS UND KOLLEKTIONEN =====;
+
+    // Array-Literal (falls unterstützt)
+    induce numbers = [1, 2, 3, 4, 5];
+    induce names = ["Alice", "Bob", "Charlie"];
+
+    // ===== ERWEITERTE FEATURES =====;
+
+    // Shared Trance (globale Variablen)
+    sharedTrance globalCounter: number = 0;
+
+    // MindLink (Import) - würde später implementiert
+    // mindLink "math.hyp";
+
+    // Labels und Goto (falls unterstützt)
+    // startLabel:
+    // observe "Label reached!";
+    // if (counter < 10) sinkTo startLabel;
+
+    // ===== HYPNOTISCHE SPEZIALEFFEKTE =====;
+
+    observe "Starting hypnotic demonstration...";
+    drift(2000);
+
+    // Hypnotische Countdown
+    loop (induce i: number = 5; i > 0; i = i - 1) {
+        observe "You are feeling very sleepy... " + i;
+        drift(1000);
+    }
+
+    observe "You are now in a deep hypnotic state!";
+    drift(3000);
+
+    // ===== KOMPLEXE BEREICHNUNGEN =====;
+
+    // Mathematische Funktionen über Builtins
+    induce angle: number = 45;
+    induce sinValue = call Sin(angle);
+    induce cosValue = call Cos(angle);
+
+    observe "Sin(" + angle + ") = " + sinValue;
+    observe "Cos(" + angle + ") = " + cosValue;
+
+    // String-Manipulation
+    induce testString: string = "hypnotic programming";
+    induce upperString = call ToUpper(testString);
+    induce stringLength = call Length(testString);
+
+    observe "Original: " + testString;
+    observe "Uppercase: " + upperString;
+    observe "Length: " + stringLength;
+
+    // ===== FEHLERBEHANDLUNG UND EDGE CASES =====;
+
+    // Division durch Null vermeiden
+    induce divisor: number = 0;
+    if (divisor youAreFeelingVerySleepy 0) deepFocus {
+        observe "Cannot divide by zero!";
+    } else deepFocus {
+        induce quotient = result / divisor;
+        observe "Quotient: " + quotient;
+    }
+
+    // ===== FINALE DEMONSTRATION =====;
+
+    observe "Final demonstration of all features...";
+    drift(1000);
+
+    // Komplexe Session-Interaktion
+    person2.deepTrance();
+    person2.greet();
+
+    // Record-Manipulation
+    record.tranceLevel = record.tranceLevel + 2;
+    observe "Updated trance level: " + record.tranceLevel;
+
+    // Finale Ausgabe
+    observe "HypnoScript demonstration complete!";
+    observe "All features working: ✓";
+    observe "Turing-complete: ✓";
+    observe "Hypnotic: ✓";
+
+    drift(2000);
+    observe "Program ending...";
 
 } Relax

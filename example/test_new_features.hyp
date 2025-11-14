@@ -1,0 +1,96 @@
+Focus {
+
+  entrance {
+    observe "=== Test der erweiterten HypnoScript Features ===";
+    observe "";
+  }
+
+  // Test 1: freeze (const) Variablen
+  observe "--- Test 1: Freeze (Konstanten) ---";
+  freeze PI: number = 3.14159;
+  observe "PI = " + PI;
+  observe "";
+
+  // Test 2: implant (alternative Variablendeklaration)
+  observe "--- Test 2: Implant (Alternative Var) ---";
+  implant secretCode: number = 42;
+  observe "Secret Code = " + secretCode;
+  observe "";
+
+  // Test 3: anchor (Zustand speichern)
+  observe "--- Test 3: Anchor (Zustand speichern) ---";
+  induce counter: number = 100;
+  anchor savedCounter = counter;
+  observe "Original Counter: " + counter;
+  counter = 200;
+  observe "Geänderter Counter: " + counter;
+  counter = savedCounter;
+  observe "Wiederhergestellter Counter: " + counter;
+  observe "";
+
+  // Test 4: whisper (Ausgabe ohne Newline)
+  observe "--- Test 4: Whisper (ohne Newline) ---";
+  whisper "Dies ";
+  whisper "ist ";
+  whisper "eine ";
+  whisper "Zeile";
+  observe "";
+  observe "";
+
+  // Test 5: command (Imperative Ausgabe)
+  observe "--- Test 5: Command (Imperativ) ---";
+  command "Aufwachen!";
+  observe "";
+
+  // Test 6: oscillate (Boolean Toggle)
+  observe "--- Test 6: Oscillate (Toggle) ---";
+  induce isActive: boolean = false;
+  observe "isActive vor oscillate: " + isActive;
+  oscillate isActive;
+  observe "isActive nach oscillate: " + isActive;
+  oscillate isActive;
+  observe "isActive nach 2x oscillate: " + isActive;
+  observe "";
+
+  // Test 7: trigger (Event Handler)
+  observe "--- Test 7: Trigger (Event Handler) ---";
+  trigger onEvent = suggestion(message: string) {
+    observe "Trigger ausgelöst: " + message;
+  }
+
+  onEvent("Hallo von Trigger!");
+  observe "";
+
+  // Test 8: deepFocus Statement
+  observe "--- Test 8: DeepFocus Statement ---";
+  induce x: number = 15;
+  if (x > 10) deepFocus {
+    observe "x ist größer als 10 (deepFocus)";
+    observe "Tiefer in die Trance...";
+  }
+  observe "";
+
+  // Test 9: Hypnotische Operatoren
+  observe "--- Test 9: Hypnotische Operatoren ---";
+  induce a: number = 10;
+  induce b: number = 10;
+
+  if (a youAreFeelingVerySleepy b) {
+    observe "a youAreFeelingVerySleepy b (a == b)";
+  }
+
+  if (a lookAtTheWatch 5) {
+    observe "a lookAtTheWatch 5 (a > 5)";
+  }
+
+  if (a yourEyesAreGettingHeavy 5) {
+    observe "a yourEyesAreGettingHeavy 5 (a >= 5)";
+  }
+  observe "";
+
+  finale {
+    observe "";
+    observe "=== Alle Tests abgeschlossen ===";
+  }
+
+} Relax

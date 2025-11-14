@@ -1,42 +1,43 @@
-import assert from "assert";
-import { i18n, t, setLocale } from "../i18n";
-import { config, logger } from "../config";
+import assert from 'assert';
+import { config, logger } from '../config';
+import { setLocale, t } from '../i18n';
+import type { LocalTranslations } from '../interfaces/localTranslations';
 
 // Ersetze den bisherigen Test-Code durch umfassendere Unit Tests.
 async function runTests() {
-  console.log("Starte Unit Tests für HypnoScript VSCode-Erweiterung...");
+  console.log('Starte Unit Tests für HypnoScript VSCode-Erweiterung...');
 
   // Test: i18n in Englisch
-  await setLocale("en");
-  let focusEn = t("Focus");
-  assert(
-    focusEn.includes("**Focus**"),
-    "i18n EN: Übersetzung für 'Focus' ist inkorrekt"
-  );
+  await setLocale('en');
+  const focusEn = t('Focus');
+  assert(focusEn.includes('**Focus**'), "i18n EN: Übersetzung für 'Focus' ist inkorrekt");
 
   // Test: i18n in Deutsch
-  await setLocale("de");
-  let focusDe = t("Focus");
+  await setLocale('de');
+  const focusDe = t('Focus');
   assert(
-    focusDe.includes("Startet ein HypnoScript-Programm"),
+    focusDe.includes('Startet ein HypnoScript-Programm'),
     "i18n DE: Übersetzung für 'Focus' ist inkorrekt"
   );
 
   // Test: Fallback-Mechanismus (nicht vorhandener Schlüssel)
-  const unknown = t("unknown_key" as any);
-  assert(unknown === "unknown_key", "Fallback: Unbekannter Schlüssel sollte als Schlüssel zurückgegeben werden");
+  const unknown = t('unknown_key' as keyof LocalTranslations);
+  assert(
+    unknown === 'unknown_key',
+    'Fallback: Unbekannter Schlüssel sollte als Schlüssel zurückgegeben werden'
+  );
 
   // Test: Logger-Konfiguration
   // (Beispielhaft, da Logger-Ausgabe in der Konsole erfolgt)
-  if (config.environment === "development") {
-    logger.debug("Test Debug Message");
+  if (config.environment === 'development') {
+    logger.debug('Test Debug Message');
   }
-  logger.info("Test Info Message");
+  logger.info('Test Info Message');
 
-  console.log("Alle Unit Tests wurden erfolgreich abgeschlossen.");
+  console.log('Alle Unit Tests wurden erfolgreich abgeschlossen.');
 }
 
 runTests().catch((err) => {
-  console.error("Unit Test Fehler:", err);
+  console.error('Unit Test Fehler:', err);
   process.exit(1);
 });

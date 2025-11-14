@@ -24,12 +24,17 @@
     "compile": "tsc",
     "watch": "tsc --watch",
     "test": "npm run compile && node ./out/test/runTest.js",
-    "pretest": "npm run compile",
     "package": "npx vsce package",
     "package-list": "npx vsce ls",
     "vsce-login": "npx vsce login HypnoScriptTeam",
     "vsce-publish": "npx vsce publish",
-    "debug": "npm run compile && npm run package"
+    "debug": "npm run compile && npm run package",
+    "lint": "eslint src --ext ts",
+    "lint:fix": "eslint src --ext ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "pretest": "npm run compile && npm run lint",
+    "prepackage": "npm run lint && npm run format:check"
   },
   "categories": [
     "Programming Languages"
@@ -85,7 +90,10 @@
   "devDependencies": {
     "@types/node": "^22.13.5",
     "@types/vscode": "^1.97.0",
-    "@vscode/vsce": "^3.2.2"
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@vscode/vsce": "^3.2.2",
+    "eslint": "^8.57.0"
   },
   "volta": {
     "node": "22.14.0"

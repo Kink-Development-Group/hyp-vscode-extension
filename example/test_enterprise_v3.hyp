@@ -1,0 +1,402 @@
+Focus {
+    entrance {
+        observe "🚀 === HypnoScript Runtime v1.0.0 - Ultimate Demo ===";
+        drift(1000);
+        observe "Welcome to the most advanced HypnoScript experience ever created!";
+        drift(500);
+        observe "This demo showcases ALL features including NEW v1.0.0 capabilities...";
+        drift(500);
+    }
+
+    observe "=== NEW Features v1.0.0 ===";
+
+    // Machine Learning Funktionen
+    observe "--- Machine Learning Functions ---";
+    induce xValues = [1, 2, 3, 4, 5];
+    induce yValues = [2, 4, 6, 8, 10];
+    induce slope = LinearRegression(xValues, yValues);
+    observe "Linear Regression slope: " + slope;
+
+    induce data = [10, 20, 30, 40, 50];
+    induce mean = CalculateMean(data);
+    induce stdDev = CalculateStandardDeviation(data);
+    observe "Data: " + data;
+    observe "Mean: " + mean;
+    observe "Standard Deviation: " + stdDev;
+
+    // Netzwerk-Funktionen
+    observe "--- Network Functions ---";
+    observe "Testing HTTP functions (simulated)...";
+    // induce response = HttpGet("https://api.example.com/data");
+    // observe "HTTP Response: " + response;
+
+    // Datenbank-ähnliche Funktionen
+    observe "--- Database-like Functions ---";
+    induce keys = ["name", "age", "city"];
+    induce values = ["Alice", 30, "Berlin"];
+    induce record = CreateRecord(keys, values);
+    induce name = GetRecordValue(record, "name");
+    observe "Record created: " + name;
+    SetRecordValue(record, "age", 31);
+    induce newAge = GetRecordValue(record, "age");
+    observe "Updated age: " + newAge;
+
+    // Erweiterte hypnotische Funktionen
+    observe "--- Advanced Hypnotic Functions v1.0.0 ---";
+    HypnoticPatternMatching("success");
+    HypnoticTimeDilation(1.5);
+    HypnoticMemoryEnhancement();
+    HypnoticCreativityBoost();
+
+    // Performance-Monitoring
+    observe "--- Performance Monitoring ---";
+    induce metrics = GetPerformanceMetrics();
+    observe "Performance Metrics: " + metrics;
+
+    // Erweiterte Validierungsfunktionen
+    observe "--- Validation Functions ---";
+    induce email = "test@example.com";
+    induce url = "https://www.example.com";
+    induce json = '{"name": "test", "value": 42}';
+    observe "Email valid: " + IsValidEmail(email);
+    observe "URL valid: " + IsValidUrl(url);
+    observe "JSON valid: " + IsValidJson(json);
+
+    // Erweiterte Formatierungsfunktionen
+    observe "--- Formatting Functions ---";
+    induce number = 123.456789;
+    induce amount = 99.99;
+    induce percentage = 75.5;
+    observe "Formatted number: " + FormatNumber(number, 3);
+    observe "Currency: " + FormatCurrency(amount, "EUR");
+    observe "Percentage: " + FormatPercentage(percentage);
+
+    // Erweiterte Array-Operationen
+    observe "--- Advanced Array Operations ---";
+    induce numbers = [1, 2, 3, 4, 5];
+    induce doubled = ArrayMap(numbers, x => x * 2);
+    observe "Original: " + numbers;
+    observe "Doubled: " + doubled;
+
+    induce sum = ArrayReduce(numbers, (acc, val) => acc + val, 0);
+    observe "Sum: " + sum;
+
+    induce nested = [[1, 2], [3, 4], [5, 6]];
+    induce flattened = ArrayFlatten(nested);
+    observe "Nested: " + nested;
+    observe "Flattened: " + flattened;
+
+    // Erweiterte String-Operationen
+    observe "--- Advanced String Operations ---";
+    induce longText = "This is a very long text that needs to be split into smaller chunks";
+    induce chunks = StringSplitByLength(longText, 20);
+    observe "Original: " + longText;
+    observe "Chunks: " + chunks;
+
+    induce rotated = StringRotate("HypnoScript", 3);
+    observe "Rotated 'HypnoScript': " + rotated;
+
+    induce shuffled = StringShuffle("HypnoScript");
+    observe "Shuffled 'HypnoScript': " + shuffled;
+
+    // ===== ERWEITERTE HYPNOTISCHE FUNKTIONEN =====;
+    observe "=== Advanced Hypnotic Functions ===";
+
+    observe "Starting advanced hypnotic session...";
+    drift(1000);
+
+    HypnoticBreathing(3);
+    HypnoticAnchoring("tranquil");
+    HypnoticRegression(8);
+    HypnoticFutureProgression(10);
+
+    observe "Advanced hypnotic session completed!";
+
+    // ===== DATEI- UND VERZEICHNIS-OPERATIONEN =====;
+    observe "=== File and Directory Operations ===";
+
+    // Testdatei erstellen
+    induce testContent: string = "This is a test file created by HypnoScript Runtime Edition v1.0.0!\nLine 2: Advanced features working perfectly.\nLine 3: File operations are amazing!\nLine 4: New v1.0.0 features are incredible!";
+    WriteFile("test_output_v3.txt", testContent);
+
+    // Datei lesen und analysieren
+    induce readContent: string = ReadFile("test_output_v3.txt");
+    observe "File content read: " + readContent;
+    observe "File size: " + GetFileSize("test_output_v3.txt") + " bytes";
+    observe "File extension: " + GetFileExtension("test_output_v3.txt");
+    observe "File name: " + GetFileName("test_output_v3.txt");
+    observe "Directory name: " + GetDirectoryName("test_output_v3.txt");
+
+    // Verzeichnis erstellen und auflisten
+    CreateDirectory("hypnoscript_v3_test");
+    induce files = GetFiles(".", "*.txt");
+    induce directories = GetDirectories(".");
+
+    observe "Files in current directory: " + ArrayLength(files);
+    observe "Directories in current directory: " + ArrayLength(directories);
+
+    // Datei anhängen
+    AppendFile("test_output_v3.txt", "\nLine 5: Appended content works great!");
+    observe "File appended successfully!";
+
+    // Zeilen lesen
+    induce lines = ReadLines("test_output_v3.txt");
+    observe "File has " + ArrayLength(lines) + " lines:";
+    loop (induce i: number = 0; i < ArrayLength(lines); i = i + 1) {
+        observe "  Line " + (i + 1) + ": " + ArrayGet(lines, i);
+    }
+
+    // ===== JSON-VERARBEITUNG =====;
+    observe "=== JSON Processing ===";
+
+    // Komplexes Objekt erstellen
+    session Person {
+        expose name: string;
+        expose age: number;
+        expose skills: array;
+        expose isActive: boolean;
+        expose metadata: object;
+
+        suggestion constructor(personName: string, personAge: number, personSkills: array, active: boolean) {
+            this.name = personName;
+            this.age = personAge;
+            this.skills = personSkills;
+            this.isActive = active;
+            this.metadata = CreateRecord(["created", "version"], [GetCurrentDateTime(), "1.0.0"]);
+        }
+    }
+
+    induce skills = ["HypnoScript", "Programming", "Hypnosis", "AI", "Machine Learning"];
+    induce person = Person("Dr. Hypnotist v3", 42, skills, true);
+
+    // Zu JSON konvertieren
+    induce jsonData: string = ToJson(person);
+    observe "Person as JSON: " + jsonData;
+
+    // Von JSON zurück konvertieren
+    induce parsedData = FromJson(jsonData);
+    observe "Parsed JSON data: " + parsedData;
+
+    // ===== ERWEITERTE MATHEMATISCHE FUNKTIONEN =====;
+    observe "=== Advanced Mathematical Functions ===";
+
+    observe "Advanced Math Operations:";
+    observe "  Factorial(5) = " + Factorial(5);
+    observe "  GCD(48, 18) = " + GCD(48, 18);
+    observe "  LCM(12, 18) = " + LCM(12, 18);
+    observe "  Degrees to Radians(180) = " + DegreesToRadians(180);
+    observe "  Radians to Degrees(3.14159) = " + RadiansToDegrees(3.14159);
+    observe "  Asin(0.5) = " + Asin(0.5);
+    observe "  Acos(0.5) = " + Acos(0.5);
+    observe "  Atan(1) = " + Atan(1);
+    observe "  Atan2(1, 1) = " + Atan2(1, 1);
+
+    // ===== ERWEITERTE STRING-FUNKTIONEN =====;
+    observe "=== Advanced String Functions ===";
+
+    induce sampleText: string = "  HypnoScript Edition v1.0.0 is INCREDIBLE!  ";
+    observe "Original text: '" + sampleText + "'";
+
+    observe "Advanced String Operations:";
+    observe "  Reversed: '" + Reverse(sampleText) + "'";
+    observe "  Capitalized: '" + Capitalize(sampleText) + "'";
+    observe "  Title Case: '" + TitleCase(sampleText) + "'";
+    observe "  Count of 'e': " + CountOccurrences(sampleText, "e");
+    observe "  Without whitespace: '" + RemoveWhitespace(sampleText) + "'";
+
+    // ===== ERWEITERTE ARRAY-FUNKTIONEN =====;
+    observe "=== Advanced Array Functions ===";
+
+    induce numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9];
+    induce words = ["apple", "banana", "apple", "cherry", "date", "banana"];
+
+    observe "Array Operations:";
+    observe "  Original numbers: " + numbers;
+    observe "  Sorted numbers: " + ArraySort(numbers);
+    observe "  Reversed numbers: " + ArrayReverse(numbers);
+    observe "  Unique numbers: " + ArrayUnique(numbers);
+
+    observe "  Original words: " + words;
+    observe "  Unique words: " + ArrayUnique(words);
+
+    // ===== KRYPTOLOGISCHE FUNKTIONEN =====;
+    observe "=== Cryptographic Functions ===";
+
+    induce secretMessage: string = "HypnoScript Edition v1.0.0 is the best programming language ever!";
+    induce md5Hash: string = HashMD5(secretMessage);
+    induce sha256Hash: string = HashSHA256(secretMessage);
+    induce base64Encoded: string = Base64Encode(secretMessage);
+    induce base64Decoded: string = Base64Decode(base64Encoded);
+
+    observe "Cryptographic Operations:";
+    observe "  Original message: " + secretMessage;
+    observe "  MD5 Hash: " + md5Hash;
+    observe "  SHA256 Hash: " + sha256Hash;
+    observe "  Base64 Encoded: " + base64Encoded;
+    observe "  Base64 Decoded: " + base64Decoded;
+
+    // ===== ERWEITERTE ZEIT- UND DATUMSFUNKTIONEN =====;
+    observe "=== Advanced Time and Date Functions ===";
+
+    observe "Advanced Time Information:";
+    observe "  Formatted DateTime: " + FormatDateTime("yyyy-MM-dd HH:mm:ss");
+    observe "  Day of Week: " + GetDayOfWeek();
+    observe "  Day of Year: " + GetDayOfYear();
+    observe "  Is 2025 Leap Year: " + IsLeapYear(2025);
+    observe "  Days in February 2025: " + GetDaysInMonth(2025, 2);
+
+    // ===== ERWEITERTE SYSTEM-FUNKTIONEN =====;
+    observe "=== Advanced System Functions ===";
+
+    observe "System Information:";
+    observe "  Current Directory: " + GetCurrentDirectory();
+    observe "  Machine Name: " + GetMachineName();
+    observe "  User Name: " + GetUserName();
+    observe "  OS Version: " + GetOSVersion();
+    observe "  Processor Count: " + GetProcessorCount();
+    observe "  Working Set: " + GetWorkingSet() + " bytes";
+
+    // ===== ERWEITERTE DEBUGGING-FUNKTIONEN =====;
+    observe "=== Advanced Debugging Functions ===";
+
+    DebugPrint("This is a debug message from HypnoScript v1.0.0");
+    DebugPrintType(42);
+    DebugPrintType("Hello World v1.0.0");
+    DebugPrintType(true);
+    DebugPrintType(3.14159);
+    DebugPrintMemory();
+    DebugPrintEnvironment();
+
+    // ===== KOMPLEXE ALGORITHMEN UND BEISPIELE =====;
+    observe "=== Complex Algorithms and Examples ===";
+
+    // Fibonacci-Funktion mit Session
+    session MathWizard {
+        expose name: string;
+        expose version: string;
+
+        suggestion constructor(wizardName: string) {
+            this.name = wizardName;
+            this.version = "1.0.0";
+        }
+
+        suggestion fibonacci(n: number): number {
+            if (n <= 1) {
+                awaken n;
+            }
+            awaken this.fibonacci(n - 1) + this.fibonacci(n - 2);
+        }
+
+        suggestion factorial(n: number): number {
+            if (n <= 1) {
+                awaken 1;
+            }
+            awaken n * this.factorial(n - 1);
+        }
+
+        suggestion calculateStatistics(data: array): object {
+            induce mean = CalculateMean(data);
+            induce stdDev = CalculateStandardDeviation(data);
+            induce sorted = ArraySort(data);
+            induce unique = ArrayUnique(data);
+
+            awaken CreateRecord(
+                ["mean", "stdDev", "sorted", "unique", "count"],
+                [mean, stdDev, sorted, unique, ArrayLength(data)]
+            );
+        }
+    }
+
+    induce wizard = MathWizard("Math Wizard v1.0.0");
+    observe "Wizard created: " + wizard.name + " v" + wizard.version;
+
+    observe "Fibonacci(10) = " + wizard.fibonacci(10);
+    observe "Factorial(6) = " + wizard.factorial(6);
+
+    induce testData = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+    induce stats = wizard.calculateStatistics(testData);
+    observe "Statistics: " + stats;
+
+    // ===== ERWEITERTE OBJEKTORIENTIERUNG =====;
+    observe "=== Advanced Object-Oriented Programming ===";
+
+    session RuntimePerson {
+        expose name: string;
+        expose age: number;
+        expose skills: array;
+        expose metadata: object;
+        conceal secretId: number;
+
+        suggestion constructor(personName: string, personAge: number, personSkills: array) {
+            this.name = personName;
+            this.age = personAge;
+            this.skills = personSkills;
+            this.secretId = RandomInt(1000, 9999);
+            this.metadata = CreateRecord(
+                ["created", "version", "id"],
+                [GetCurrentDateTime(), "1.0.0", this.secretId]
+            );
+        }
+
+        suggestion greet() {
+            observe "Hello, I am " + this.name + " and I am " + this.age + " years old";
+            observe "My skills: " + this.skills;
+        }
+
+        suggestion addSkill(skill: string) {
+            induce newSkills = ArrayConcat(this.skills, [skill]);
+            this.skills = newSkills;
+            observe "Added skill: " + skill;
+        }
+
+        suggestion getMetadata(): object {
+            awaken this.metadata;
+        }
+    }
+
+    induce enterprisePerson = RuntimePerson("Runtime Developer", 35, ["HypnoScript", "C#", "JavaScript"]);
+    enterprisePerson.greet();
+    enterprisePerson.addSkill("Machine Learning");
+    induce metadata = enterprisePerson.getMetadata();
+    observe "Person metadata: " + metadata;
+
+    // ===== ERWEITERTE STRUKTUREN =====;
+    observe "=== Advanced Structures ===";
+
+    tranceify RuntimeConfig {
+        name: string;
+        version: string;
+        features: array;
+        settings: object;
+        enabled: boolean;
+    }
+
+    induce config = RuntimeConfig {
+        name: "HypnoScript Runtime",
+        version: "1.0.0",
+        features: ["ML", "Networking", "Database", "Monitoring"],
+        settings: CreateRecord(["debug", "verbose"], [true, false]),
+        enabled: true
+    };
+
+    observe "Runtime Config: " + config;
+
+    // ===== FINALE DEMONSTRATION =====;
+    observe "=== Final Runtime v1.0.0 Demonstration ===";
+
+    observe "🎉 Congratulations! You have successfully experienced HypnoScript Runtime Edition v1.0.0!";
+    observe "🚀 This version includes:";
+    observe "   - Machine Learning capabilities";
+    observe "   - Network functions";
+    observe "   - Database-like operations";
+    observe "   - Advanced hypnotic functions";
+    observe "   - Performance monitoring";
+    observe "   - Enhanced validation";
+    observe "   - Advanced formatting";
+    observe "   - Extended array operations";
+    observe "   - Advanced string manipulation";
+    observe "   - And much more!";
+
+    observe "🌟 HypnoScript Runtime Edition v1.0.0 - Where programming meets hypnosis! 🌟";
+
+} Relax

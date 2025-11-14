@@ -3,66 +3,317 @@
   "name": "HypnoScript",
   "patterns": [
     {
+      "include": "#comments"
+    },
+    {
+      "include": "#program-structure"
+    },
+    {
       "include": "#keywords"
     },
     {
+      "include": "#control-flow"
+    },
+    {
+      "include": "#declarations"
+    },
+    {
+      "include": "#pattern-matching"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#constants"
+    },
+    {
       "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#function-calls"
+    },
+    {
+      "include": "#builtin-functions"
     }
   ],
   "repository": {
-    "keywords": {
+    "comments": {
       "patterns": [
         {
-          "name": "keyword.control.hypno",
-          "match": "\\b(Focus|Relax|if|else|while|loop|snap|sink|suggestion|awaken|observe|induce|session|expose|conceal|dominant|drift|tranceify|mindLink|sharedTrance|imperative|entrance|finale|deepFocus|call|from|external|freeze|whisper|oscillate|anchor|implant|trigger|command|repeatAction|repeatUntil|repeatWhile|delayedSuggestion|ifTranced|tryOrAwaken|ensureAwakening|sequentialTrance)\\b"
+          "name": "comment.line.double-slash.hypnoscript",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.hypnoscript",
+          "begin": "/\\*",
+          "end": "\\*/",
+          "patterns": [
+            {
+              "include": "#comments"
+            }
+          ]
         }
       ]
     },
-    "types": {
+    "program-structure": {
       "patterns": [
         {
-          "name": "storage.type.hypno",
-          "match": "\\b(number|string|boolean|trance)\\b"
+          "name": "keyword.control.program.hypnoscript",
+          "match": "\\b(Focus|Relax)\\b"
+        },
+        {
+          "name": "keyword.control.entry.hypnoscript",
+          "match": "\\b(entrance|finale)\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "include": "#control-flow"
+        },
+        {
+          "include": "#declarations"
+        },
+        {
+          "include": "#modifiers"
+        },
+        {
+          "include": "#special-keywords"
+        }
+      ]
+    },
+    "control-flow": {
+      "patterns": [
+        {
+          "name": "keyword.control.conditional.hypnoscript",
+          "match": "\\b(if|else)\\b"
+        },
+        {
+          "name": "keyword.control.loop.hypnoscript",
+          "match": "\\b(while|loop|pendulum)\\b"
+        },
+        {
+          "name": "keyword.control.flow.hypnoscript",
+          "match": "\\b(snap|sink|sinkTo|awaken)\\b"
+        },
+        {
+          "name": "keyword.control.async.hypnoscript",
+          "match": "\\b(mesmerize|await|surrenderTo)\\b"
+        },
+        {
+          "name": "keyword.control.pattern.hypnoscript",
+          "match": "\\b(entrain|when|otherwise)\\b"
+        }
+      ]
+    },
+    "declarations": {
+      "patterns": [
+        {
+          "name": "keyword.declaration.variable.hypnoscript",
+          "match": "\\b(induce|implant|embed|freeze|sharedTrance)\\b"
+        },
+        {
+          "name": "keyword.declaration.function.hypnoscript",
+          "match": "\\b(suggestion|trigger)\\b"
+        },
+        {
+          "name": "keyword.declaration.type.hypnoscript",
+          "match": "\\b(session|tranceify|constructor)\\b"
+        },
+        {
+          "name": "keyword.declaration.module.hypnoscript",
+          "match": "\\b(mindLink|from|external)\\b"
+        }
+      ]
+    },
+    "modifiers": {
+      "patterns": [
+        {
+          "name": "storage.modifier.access.hypnoscript",
+          "match": "\\b(expose|conceal|dominant)\\b"
+        },
+        {
+          "name": "storage.modifier.type.hypnoscript",
+          "match": "\\b(imperative|mesmerize|lucid)\\b"
+        }
+      ]
+    },
+    "special-keywords": {
+      "patterns": [
+        {
+          "name": "keyword.other.output.hypnoscript",
+          "match": "\\b(observe|whisper|command|murmur)\\b"
+        },
+        {
+          "name": "keyword.other.timing.hypnoscript",
+          "match": "\\b(drift|pauseReality|suspend|accelerateTime|decelerateTime)\\b"
+        },
+        {
+          "name": "keyword.other.state.hypnoscript",
+          "match": "\\b(anchor|oscillate|deepFocus|deeperStill)\\b"
+        },
+        {
+          "name": "keyword.other.special.hypnoscript",
+          "match": "\\b(call|this|trance|subconscious)\\b"
+        }
+      ]
+    },
+    "pattern-matching": {
+      "patterns": [
+        {
+          "name": "keyword.control.pattern.hypnoscript",
+          "match": "\\b(entrain|when|otherwise)\\b"
         }
       ]
     },
     "operators": {
       "patterns": [
         {
-          "name": "keyword.operator.hypno",
-          "match": "\\b(youAreFeelingVerySleepy|youCannotResist|lookAtTheWatch|fallUnderMySpell|yourEyesAreGettingHeavy|goingDeeper|underMyControl|resistanceIsFutile|==|!=|>=|<=|>|<|\\+|\\-|\\*|/|%)\\b"
+          "name": "keyword.operator.hypnotic.comparison.hypnoscript",
+          "match": "\\b(youAreFeelingVerySleepy|youCannotResist|lookAtTheWatch|fallUnderMySpell|yourEyesAreGettingHeavy|goingDeeper)\\b"
+        },
+        {
+          "name": "keyword.operator.hypnotic.logical.hypnoscript",
+          "match": "\\b(underMyControl|resistanceIsFutile)\\b"
+        },
+        {
+          "name": "keyword.operator.hypnotic.nullish.hypnoscript",
+          "match": "\\b(lucidFallback|dreamReach)\\b"
+        },
+        {
+          "name": "keyword.operator.comparison.hypnoscript",
+          "match": "(==|!=|>=|<=|>|<)"
+        },
+        {
+          "name": "keyword.operator.logical.hypnoscript",
+          "match": "(&&|\\|\\||!)"
+        },
+        {
+          "name": "keyword.operator.arithmetic.hypnoscript",
+          "match": "(\\+|\\-|\\*|/|%)"
+        },
+        {
+          "name": "keyword.operator.assignment.hypnoscript",
+          "match": "="
+        },
+        {
+          "name": "keyword.operator.nullish.hypnoscript",
+          "match": "(\\?\\?|\\.\\?)"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "storage.type.primitive.hypnoscript",
+          "match": "\\b(number|string|boolean|trance)\\b"
+        },
+        {
+          "name": "storage.type.modifier.hypnoscript",
+          "match": "\\b(lucid)\\b"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.hypnoscript",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "constant.language.null.hypnoscript",
+          "match": "\\b(null|undefined)\\b"
         }
       ]
     },
     "strings": {
-      "name": "string.quoted.double.hypno",
-      "begin": "\"",
-      "end": "\"",
       "patterns": [
         {
-          "name": "constant.character.escape.hypno",
-          "match": "\\\\."
+          "name": "string.quoted.double.hypnoscript",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.hypnoscript",
+              "match": "\\\\([\"\\\\/bfnrt]|u[0-9a-fA-F]{4})"
+            },
+            {
+              "name": "invalid.illegal.unrecognized-escape.hypnoscript",
+              "match": "\\\\."
+            }
+          ]
         }
       ]
     },
     "numbers": {
       "patterns": [
         {
-          "name": "constant.numeric.hypno",
-          "match": "\\b[0-9]+(?:\\.[0-9]+)?\\b"
+          "name": "constant.numeric.decimal.hypnoscript",
+          "match": "\\b([0-9]+\\.?[0-9]*([eE][+-]?[0-9]+)?)\\b"
         }
       ]
     },
-    "comments": {
+    "function-calls": {
       "patterns": [
         {
-          "name": "comment.line.double-slash.hypno",
-          "match": "//.*"
+          "name": "meta.function-call.hypnoscript",
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*(?=\\()",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.hypnoscript"
+            }
+          }
+        }
+      ]
+    },
+    "builtin-functions": {
+      "patterns": [
+        {
+          "name": "support.function.math.hypnoscript",
+          "match": "\\b(hypnoticPi|pendulumSin|pendulumCos|power|floor|ceiling|roundToNearest|squareRoot|absoluteDepth|Max|Min|Log|Log10|Exp|Random|RandomInt)\\b"
         },
         {
-          "name": "comment.block.hypno",
-          "begin": "/\\*",
-          "end": "\\*/"
+          "name": "support.function.string.hypnoscript",
+          "match": "\\b(trimEdges|measureDepth|toUpper|toLower|reverseTrance|repeatMantra|containsPattern|replaceAllMemories|startsWithSuggestion|endsWithAwakening|Trim|TrimStart|TrimEnd|IndexOf|LastIndexOf|StartsWith|EndsWith|PadLeft|PadRight|Split|Join)\\b"
+        },
+        {
+          "name": "support.function.array.hypnoscript",
+          "match": "\\b(fragmentMemory|mergeThoughts|vaultSize|sortMemories|reverseMemories|firstMemory|lastMemory|mapMemories|filterMemories|reduceToEssence|ArrayLength|ArrayGet|ArraySlice|ArrayContains|ArrayIndexOf|ArrayConcat)\\b"
+        },
+        {
+          "name": "support.function.conversion.hypnoscript",
+          "match": "\\b(ToInt|ToDouble|ToString|ToBoolean|ToChar)\\b"
+        },
+        {
+          "name": "support.function.data-structure.hypnoscript",
+          "match": "\\b(MindStack|ThoughtQueue|MemoryMap|createVault|storeMemory|peekAtMemory)\\b"
+        },
+        {
+          "name": "support.function.control.hypnoscript",
+          "match": "\\b(repeatAction|repeatUntil|repeatWhile|delayedSuggestion|ifTranced|tryOrAwaken|ensureAwakening|sequentialTrance|parallelTrance|scheduleAwakening)\\b"
+        },
+        {
+          "name": "support.function.hypnotic.hypnoscript",
+          "match": "\\b(HypnoticVisualization|ProgressiveRelaxation|HypnoticSuggestion|TranceDeepening|HypnoticPatternMatching|HypnoticTimeDilation|HypnoticMemoryEnhancement|HypnoticCreativityBoost)\\b"
+        },
+        {
+          "name": "support.function.system.hypnoscript",
+          "match": "\\b(GetCurrentTime|GetCurrentDate|GetCurrentTimeString|GetCurrentDateTime|GetEnvironmentVariable|DebugPrint|DebugPrintType)\\b"
+        },
+        {
+          "name": "support.function.advanced.hypnoscript",
+          "match": "\\b(LinearRegression|CalculateMean|CalculateStandardDeviation|CreateRecord|GetRecordValue|SetRecordValue|HttpGet|HttpPost)\\b"
+        },
+        {
+          "name": "support.function.random.hypnoscript",
+          "match": "\\b(unconsciousInt|unconsciousBool|selectDominant|selectSubmissive)\\b"
         }
       ]
     }

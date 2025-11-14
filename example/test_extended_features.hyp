@@ -1,0 +1,331 @@
+Focus {
+    entrance {
+        observe "🧠 === HypnoScript Extended Features Demonstration ===";
+        drift(1000);
+        observe "Welcome to the most advanced HypnoScript experience!";
+        drift(500);
+    }
+
+    // ===== ERWEITERTE MATHEMATISCHE FUNKTIONEN =====;
+    observe "=== Advanced Mathematical Functions ===";
+
+    induce pi: number = 3.14159;
+    induce e: number = 2.71828;
+
+    observe "Mathematical Constants:";
+    observe "  π ≈ " + pi;
+    observe "  e ≈ " + e;
+
+    observe "Advanced Math Operations:";
+    observe "  Sin(30°) = " + Sin(30);
+    observe "  Cos(60°) = " + Cos(60);
+    observe "  Tan(45°) = " + Tan(45);
+    observe "  Sqrt(144) = " + Sqrt(144);
+    observe "  Pow(2, 10) = " + Pow(2, 10);
+    observe "  Log(100) = " + Log(100);
+    observe "  Log10(1000) = " + Log10(1000);
+    observe "  Exp(1) = " + Exp(1);
+    observe "  Max(42, 17) = " + Max(42, 17);
+    observe "  Min(42, 17) = " + Min(42, 17);
+    observe "  Abs(-42) = " + Abs(-42);
+    observe "  Floor(3.7) = " + Floor(3.7);
+    observe "  Ceiling(3.2) = " + Ceiling(3.2);
+    observe "  Round(3.5) = " + Round(3.5);
+
+    observe "Random Numbers:";
+    observe "  Random float: " + Random();
+    observe "  Random int (1-100): " + RandomInt(1, 100);
+
+    // ===== ERWEITERTE STRING-MANIPULATION =====;
+    observe "=== Advanced String Manipulation ===";
+
+    induce sampleText: string = "  HypnoScript is absolutely AMAZING!  ";
+    observe "Original text: '" + sampleText + "'";
+
+    observe "String Analysis:";
+    observe "  Length: " + Length(sampleText);
+    observe "  Contains 'Script': " + Contains(sampleText, "Script");
+    observe "  Index of 'Script': " + IndexOf(sampleText, "Script");
+    observe "  Last index of 'i': " + LastIndexOf(sampleText, "i");
+    observe "  Starts with '  Hyp': " + StartsWith(sampleText, "  Hyp");
+    observe "  Ends with '!  ': " + EndsWith(sampleText, "!  ");
+
+    observe "String Transformations:";
+    observe "  Trimmed: '" + Trim(sampleText) + "'";
+    observe "  TrimStart: '" + TrimStart(sampleText) + "'";
+    observe "  TrimEnd: '" + TrimEnd(sampleText) + "'";
+    observe "  Uppercase: '" + ToUpper(sampleText) + "'";
+    observe "  Lowercase: '" + ToLower(sampleText) + "'";
+    observe "  Replaced 'AMAZING' with 'INCREDIBLE': '" + Replace(sampleText, "AMAZING", "INCREDIBLE") + "'";
+    observe "  Substring(5, 10): '" + Substring(sampleText, 5, 10) + "'";
+    observe "  PadLeft(40, '*'): '" + PadLeft(sampleText, 40, '*') + "'";
+    observe "  PadRight(40, '#'): '" + PadRight(sampleText, 40, '#') + "'";
+
+    // ===== ARRAY-OPERATIONEN =====;
+    observe "=== Advanced Array Operations ===";
+
+    induce primaryArray = [1, 2, 3, 4, 5];
+    induce secondaryArray = [6, 7, 8, 9, 10];
+    induce mixedArray = ["apple", 42, true, 3.14, "banana"];
+
+    observe "Array Analysis:";
+    observe "  Primary array length: " + ArrayLength(primaryArray);
+    observe "  Secondary array length: " + ArrayLength(secondaryArray);
+    observe "  Mixed array length: " + ArrayLength(mixedArray);
+
+    observe "Array Operations:";
+    observe "  First element of primary: " + ArrayGet(primaryArray, 0);
+    observe "  Last element of primary: " + ArrayGet(primaryArray, ArrayLength(primaryArray) - 1);
+    observe "  Slice(1, 3) of primary: " + ArraySlice(primaryArray, 1, 3);
+    observe "  Contains 3 in primary: " + ArrayContains(primaryArray, 3);
+    observe "  Contains 99 in primary: " + ArrayContains(primaryArray, 99);
+    observe "  Index of 4 in primary: " + ArrayIndexOf(primaryArray, 4);
+
+    // Array concatenation
+    induce combinedArray = ArrayConcat(primaryArray, secondaryArray);
+    observe "  Combined arrays: " + combinedArray;
+    observe "  Combined length: " + ArrayLength(combinedArray);
+
+    // ===== KONVERTIERUNGSFUNKTIONEN =====;
+    observe "=== Type Conversion Functions ===";
+
+    observe "Number Conversions:";
+    observe "  ToInt(42.7) = " + ToInt(42.7);
+    observe "  ToInt(42.2) = " + ToInt(42.2);
+    observe "  ToDouble(42) = " + ToDouble(42);
+    observe "  ToDouble(3.14159) = " + ToDouble(3.14159);
+
+    observe "String Conversions:";
+    observe "  ToString(42) = '" + ToString(42) + "'";
+    observe "  ToString(3.14) = '" + ToString(3.14) + "'";
+    observe "  ToString(true) = '" + ToString(true) + "'";
+
+    observe "Boolean Conversions:";
+    observe "  ToBoolean(1) = " + ToBoolean(1);
+    observe "  ToBoolean(0) = " + ToBoolean(0);
+    observe "  ToBoolean(42) = " + ToBoolean(42);
+
+    observe "Character Conversions:";
+    observe "  ToChar(65) = " + ToChar(65);  // 'A'
+    observe "  ToChar(97) = " + ToChar(97);  // 'a'
+
+    // ===== ERWEITERTE HYPNOTISCHE FUNKTIONEN =====;
+    observe "=== Extended Hypnotic Functions ===";
+
+    observe "Starting hypnotic session...";
+    drift(1000);
+
+    HypnoticVisualization("a serene mountain lake at sunset");
+    ProgressiveRelaxation(3);
+    HypnoticSuggestion("You are becoming more creative and focused");
+    TranceDeepening(2);
+
+    observe "Hypnotic session completed!";
+
+    // ===== ZEIT- UND DATUMSFUNKTIONEN =====;
+    observe "=== Time and Date Functions ===";
+
+    observe "Current Time Information:";
+    observe "  Unix timestamp: " + GetCurrentTime();
+    observe "  Date: " + GetCurrentDate();
+    observe "  Time: " + GetCurrentTimeString();
+    observe "  Full datetime: " + GetCurrentDateTime();
+
+    // ===== SYSTEM-FUNKTIONEN =====;
+    observe "=== System Functions ===";
+
+    observe "System Information:";
+    observe "  PATH environment variable length: " + Length(GetEnvironmentVariable("PATH"));
+
+    observe "Debug Functions:";
+    DebugPrint("This is a debug message from HypnoScript");
+    DebugPrintType(42);
+    DebugPrintType("Hello World");
+    DebugPrintType(true);
+    DebugPrintType(3.14);
+
+    // ===== KOMPLEXE BEISPIELE UND ALGORITHMEN =====;
+    observe "=== Complex Examples and Algorithms ===";
+
+    // String parsing and manipulation
+    observe "String Parsing Example:";
+    induce csvData: string = "Alice,25,Engineer,Bob,30,Designer,Charlie,35,Manager";
+    induce csvArray = Split(csvData, ",");
+    observe "  CSV data: " + csvData;
+    observe "  Parsed into " + ArrayLength(csvArray) + " elements";
+
+    // Reconstruct as structured data
+    loop (induce i: number = 0; i < ArrayLength(csvArray); i = i + 3) {
+        if (i + 2 < ArrayLength(csvArray)) {
+            induce name = ArrayGet(csvArray, i);
+            induce age = ArrayGet(csvArray, i + 1);
+            induce job = ArrayGet(csvArray, i + 2);
+            observe "  Person: " + name + " (Age: " + age + ", Job: " + job + ")";
+        }
+    }
+
+    // Mathematical calculations
+    observe "Mathematical Calculations:";
+    induce radius: number = 5;
+    induce area = pi * Pow(radius, 2);
+    induce circumference = 2 * pi * radius;
+    observe "  Circle with radius " + radius + ":";
+    observe "    Area: " + area;
+    observe "    Circumference: " + circumference;
+
+    // Array statistics
+    observe "Array Statistics:";
+    induce numbers = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+    induce sum: number = 0;
+    induce min = ToInt(ArrayGet(numbers, 0));
+    induce max = ToInt(ArrayGet(numbers, 0));
+
+    loop (induce i: number = 0; i < ArrayLength(numbers); i = i + 1) {
+        induce num = ToInt(ArrayGet(numbers, i));
+        sum = sum + num;
+        min = Min(min, num);
+        max = Max(max, num);
+    }
+
+    induce average = sum / ArrayLength(numbers);
+    observe "  Numbers: " + numbers;
+    observe "  Sum: " + sum;
+    observe "  Average: " + average;
+    observe "  Min: " + min;
+    observe "  Max: " + max;
+
+    // ===== OBJEKTORIENTIERTE PROGRAMMIERUNG =====;
+    observe "=== Object-Oriented Programming ===";
+
+    session Hypnotist {
+        expose name: string;
+        expose experience: number;
+        expose specialties: object[];
+
+        suggestion constructor(hypnotistName: string, yearsExperience: number) {
+            this.name = hypnotistName;
+            this.experience = yearsExperience;
+            this.specialties = ["general hypnosis", "therapeutic trance"];
+        }
+
+        suggestion addSpecialty(specialty: string) {
+            this.specialties = ArrayConcat(this.specialties, [specialty]);
+        }
+
+        suggestion performInduction(subjectName: string) {
+            observe this.name + " begins hypnotic induction with " + subjectName;
+            drift(1000);
+            observe "Take a deep breath and relax...";
+            drift(500);
+            observe "You are entering a deep, peaceful trance...";
+        }
+
+        suggestion getSpecialtyCount(): number {
+            awaken ArrayLength(this.specialties);
+        }
+    }
+
+    induce masterHypnotist = Hypnotist("Dr. Mesmer", 15);
+    masterHypnotist.addSpecialty("regression therapy");
+    masterHypnotist.addSpecialty("pain management");
+
+    observe "Created hypnotist: " + masterHypnotist.name;
+    observe "Experience: " + masterHypnotist.experience + " years";
+    observe "Specialties: " + masterHypnotist.specialties;
+    observe "Specialty count: " + masterHypnotist.getSpecialtyCount();
+
+    masterHypnotist.performInduction("Alice");
+
+    // ===== STRUKTUREN UND RECORDS =====;
+    observe "=== Structures and Records ===";
+
+    tranceify HypnoSession {
+        subjectName: string;
+        sessionType: string;
+        duration: number;
+        successLevel: number;
+        notes: string;
+    }
+
+    induce session1 = HypnoSession {
+        subjectName: "Alice",
+        sessionType: "relaxation",
+        duration: 45,
+        successLevel: 8,
+        notes: "Excellent response to progressive relaxation"
+    };
+
+    induce session2 = HypnoSession {
+        subjectName: "Bob",
+        sessionType: "therapeutic",
+        duration: 60,
+        successLevel: 7,
+        notes: "Good progress with anxiety reduction"
+    };
+
+    observe "Session Records:";
+    observe "  Session 1: " + session1.subjectName + " - " + session1.sessionType + " (" + session1.duration + " min)";
+    observe "  Session 2: " + session2.subjectName + " - " + session2.sessionType + " (" + session2.duration + " min)";
+
+    // ===== HYPNOTISCHE OPERATOR-SYNONYME =====;
+    observe "=== Hypnotic Operator Synonyms ===";
+
+    induce a: number = 10;
+    induce b: number = 5;
+
+    observe "Using hypnotic operator synonyms:";
+    observe "  a = " + a + ", b = " + b;
+
+    if (a youAreFeelingVerySleepy b) {
+        observe "  a equals b (using youAreFeelingVerySleepy)";
+    } else {
+        observe "  a does not equal b (using youAreFeelingVerySleepy)";
+    }
+
+    if (a lookAtTheWatch b) {
+        observe "  a is greater than b (using lookAtTheWatch)";
+    }
+
+    if (b fallUnderMySpell a) {
+        observe "  b is less than a (using fallUnderMySpell)";
+    }
+
+    if (a deeplyGreater b) {
+        observe "  a is greater than or equal to b (using deeplyGreater)";
+    }
+
+    if (b deeplyLess a) {
+        observe "  b is less than or equal to a (using deeplyLess)";
+    }
+
+    // ===== FINALE DEMONSTRATION =====;
+    observe "=== Final Demonstration ===";
+
+    // Complex calculation combining all features
+    induce finalCalculation = Max(Pow(2, 8), Min(100, 50)) + Abs(-15) + Round(3.7);
+    observe "Complex calculation: Max(2^8, Min(100,50)) + Abs(-15) + Round(3.7) = " + finalCalculation;
+
+    // String formatting with all features
+    induce formattedOutput = "HypnoScript " + ToUpper("is working perfectly!") + " at " + GetCurrentTimeString() +
+                             " with " + ToString(ArrayLength(mixedArray)) + " mixed array elements";
+    observe formattedOutput;
+
+    // Array processing demonstration
+    observe "Final array processing demonstration:";
+    induce processedArray = [];
+    loop (induce i: number = 0; i < ArrayLength(mixedArray); i = i + 1) {
+        induce element = ArrayGet(mixedArray, i);
+        induce elementType = ToString(element);
+        induce processedElement = "Element " + i + ": " + element + " (" + elementType + ")";
+        processedArray = ArrayConcat(processedArray, [processedElement]);
+    }
+
+    observe "Processed array: " + processedArray;
+
+    observe "🧠 === All Extended Features Successfully Demonstrated! ===";
+    observe "HypnoScript is now a fully-featured, powerful programming language! 🎉✨";
+
+    drift(2000);
+    observe "Program ending... Thank you for experiencing HypnoScript!";
+
+} Relax

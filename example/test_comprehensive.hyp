@@ -1,0 +1,189 @@
+Focus {
+    entrance {
+        observe "=== HypnoScript Comprehensive Test ===";
+        drift(500);
+    }
+
+    // ===== GRUNDLEGENDE FEATURES =====;
+    observe "Testing basic features...";
+
+    // Variablendeklarationen
+    induce greeting: string = "Hello from HypnoScript!";
+    induce counter: number = 0;
+    induce isActive: boolean = true;
+
+    // Einfache Ausgaben
+    observe greeting;
+    observe "Counter: " + counter;
+
+    // ===== ARITHMETISCHE OPERATIONEN =====;
+    observe "Testing arithmetic operations...";
+
+    induce x: number = 10;
+    induce y: number = 5;
+    induce result: number = x + y;
+    observe "10 + 5 = " + result;
+
+    induce product: number = x * y;
+    observe "10 * 5 = " + product;
+
+    // ===== HYPNOTISCHE OPERATOR-SYNONYME =====;
+    observe "Testing hypnotic operator synonyms...";
+
+    if (counter youAreFeelingVerySleepy 0) deepFocus {
+        observe "Counter equals zero (using youAreFeelingVerySleepy)";
+    }
+
+    if (x lookAtTheWatch y) deepFocus {
+        observe "10 is greater than 5 (using lookAtTheWatch)";
+    }
+
+    if (y fallUnderMySpell x) deepFocus {
+        observe "5 is less than 10 (using fallUnderMySpell)";
+    }
+
+    // ===== KONTROLLSTRUKTUREN =====;
+    observe "Testing control structures...";
+
+    // While-Schleife
+    while (counter fallUnderMySpell 3) {
+        counter = counter + 1;
+        observe "Counter in while loop: " + counter;
+        drift(200);
+    }
+
+    // Loop-Statement (for-Schleife)
+    loop (induce i: number = 0; i < 3; i = i + 1) {
+        observe "Loop iteration: " + i;
+        if (i youAreFeelingVerySleepy 1) deepFocus {
+            observe "First iteration!";
+            snap;  // Break
+        }
+    }
+
+    // ===== ARRAYS =====;
+    observe "Testing arrays...";
+
+    induce numbers = [1, 2, 3, 4, 5];
+    induce names = ["Alice", "Bob", "Charlie"];
+
+    observe "First number: " + numbers[0];
+    observe "Second name: " + names[1];
+
+    // ===== FUNKTIONEN =====;
+    observe "Testing functions...";
+
+    // Einfache Funktion
+    suggestion add(a: number, b: number): number {
+        awaken a + b;
+    }
+
+    // Imperative Funktion
+    imperative suggestion printMessage(message: string) {
+        observe "*** " + message + " ***";
+        drift(500);
+    }
+
+    // Funktionsaufrufe
+    induce sum = call add(7, 8);
+    observe "Sum: " + sum;
+
+    printMessage("You are feeling very relaxed...");
+
+    // ===== BUILTIN-FUNKTIONEN =====;
+    observe "Testing builtin functions...";
+
+    // Mathematische Funktionen
+    induce angle: number = 45;
+    induce sinValue = call Sin(angle);
+    induce cosValue = call Cos(angle);
+    observe "Sin(45) = " + sinValue;
+    observe "Cos(45) = " + cosValue;
+
+    // String-Funktionen
+    induce testString: string = "hypnotic programming";
+    induce upperString = call ToUpper(testString);
+    induce stringLength = call Length(testString);
+    observe "Original: " + testString;
+    observe "Uppercase: " + upperString;
+    observe "Length: " + stringLength;
+
+    // ===== TRANCEIFY (STRUKTUREN) =====;
+    observe "Testing tranceify structures...";
+
+    tranceify Person {
+        name: string;
+        age: number;
+        isInTrance: boolean;
+    }
+
+    induce person = Person {
+        name: "Alice",
+        age: 30,
+        isInTrance: true
+    };
+
+    observe "Person name: " + person.name;
+    observe "Person age: " + person.age;
+
+    // ===== SESSIONS (KLASSEN) =====;
+    observe "Testing sessions (classes)...";
+
+    session Hypnotist {
+        expose name: string;
+        expose tranceLevel: number;
+
+        suggestion constructor(hypnotistName: string) {
+            this.name = hypnotistName;
+            this.tranceLevel = 0;
+        }
+
+        suggestion induceTrance() {
+            this.tranceLevel = this.tranceLevel + 1;
+            observe this.name + " induces deeper trance...";
+        }
+
+        suggestion greet() {
+            observe "Hello, I am " + this.name + " (Trance Level: " + this.tranceLevel + ")";
+        }
+    }
+
+    induce hypnotist = Hypnotist("Dr. Mesmer");
+    hypnotist.greet();
+    hypnotist.induceTrance();
+    hypnotist.greet();
+
+    // ===== HYPNOTISCHE SPEZIALEFFEKTE =====;
+    observe "Testing hypnotic special effects...";
+
+    // Hypnotische Countdown
+    loop (induce i: number = 3; i > 0; i = i - 1) {
+        observe "You are feeling very sleepy... " + i;
+        drift(1000);
+    }
+
+    observe "You are now in a deep hypnotic state!";
+    drift(2000);
+
+    // ===== FINALE DEMONSTRATION =====;
+    observe "=== Final Demonstration ===";
+
+    // Komplexe Berechnung
+    induce finalResult = call add(call Sin(30), call Cos(60));
+    observe "Final calculation: " + finalResult;
+
+    // Array-Manipulation
+    induce mixedArray = [1, "hypnosis", true, 3.14];
+    observe "Mixed array element 1: " + mixedArray[1];
+
+    // String-Manipulation
+    induce finalMessage = call ToUpper("hypnoscript is working perfectly!");
+    observe finalMessage;
+
+    observe "=== All tests completed successfully! ===";
+    observe "HypnoScript is fully functional! ✓";
+
+    drift(1000);
+    observe "Program ending...";
+
+} Relax

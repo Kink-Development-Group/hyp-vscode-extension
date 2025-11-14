@@ -1,0 +1,22 @@
+Focus {
+    entrance {
+        observe "Basic HypnoScript Test";
+    }
+
+    // Grundlegende Variablen
+    induce greeting: string = "Hello Trance!";
+    induce counter: number = 0;
+
+    // Einfache Ausgabe
+    observe greeting;
+
+    // Einfache If-Else
+    if (counter youAreFeelingVerySleepy 0) deepFocus {
+        observe "Counter is zero";
+    } else deepFocus {
+        observe "Counter is not zero";
+    }
+
+    observe "Test complete!";
+
+} Relax
