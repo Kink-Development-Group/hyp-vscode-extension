@@ -1,42 +1,94 @@
 import { LocalTranslations } from './interfaces/localTranslations';
 
+/**
+ * Core HypnoScript keywords - Grundlegende Schlüsselwörter
+ */
 export const coreKeywords = [
   'Focus',
   'Relax',
   'entrance',
   'finale',
   'induce',
+  'implant',
+  'embed',
+  'freeze',
+  'sharedTrance',
   'suggestion',
   'awaken',
   'observe',
   'whisper',
+  'command',
+  'murmur',
   'call',
   'mindLink',
+  'from',
+  'external',
   'session',
   'constructor',
   'expose',
   'conceal',
+  'dominant',
   'tranceify',
   'loop',
   'while',
+  'pendulum',
   'if',
   'else',
   'drift',
+  'pauseReality',
+  'suspend',
+  'accelerateTime',
+  'decelerateTime',
   'trance',
+  'subconscious',
+  'lucid',
   'deepFocus',
-  'from',
-  'external',
+  'deeperStill',
   'snap',
   'sink',
-  'dominant',
-  'freeze',
+  'sinkTo',
   'oscillate',
   'anchor',
-  'implant',
   'trigger',
-  'command',
+  'mesmerize',
+  'await',
+  'surrenderTo',
+  'entrain',
+  'when',
+  'otherwise',
+  'imperative',
 ] as const;
 
+/**
+ * Type system keywords - Typ-System
+ */
+export const typeKeywords = [
+  'number',
+  'string',
+  'boolean',
+  'trance',
+  'lucid',
+] as const;
+
+/**
+ * Hypnotic operator synonyms - Hypnotische Operator-Synonyme
+ */
+export const operatorSynonyms = [
+  'youAreFeelingVerySleepy', // ==
+  'youCannotResist', // !=
+  'lookAtTheWatch', // >
+  'fallUnderMySpell', // <
+  'yourEyesAreGettingHeavy', // >=
+  'goingDeeper', // <=
+  'underMyControl', // &&
+  'resistanceIsFutile', // ||
+  'lucidFallback', // ??
+  'dreamReach', // ?.
+] as const;
+
+/**
+ * Control flow helper functions - Kontrollfluss-Helfer (DeepMind Library)
+ */
 export const controlFlowHelpers = [
   'repeatAction',
   'repeatUntil',
@@ -46,20 +98,15 @@ export const controlFlowHelpers = [
   'tryOrAwaken',
   'ensureAwakening',
   'sequentialTrance',
+  'parallelTrance',
+  'scheduleAwakening',
+  'awakenAfter',
 ] as const;
 
-export const operatorSynonyms = [
-  'youAreFeelingVerySleepy',
-  'youCannotResist',
-  'lookAtTheWatch',
-  'fallUnderMySpell',
-  'yourEyesAreGettingHeavy',
-  'goingDeeper',
-  'underMyControl',
-  'resistanceIsFutile',
-] as const;
-
-export const standardLibraryFunctions = [
+/**
+ * Standard library - Mathematical functions (MathWizard)
+ */
+export const mathFunctions = [
   'hypnoticPi',
   'pendulumSin',
   'pendulumCos',
@@ -67,16 +114,23 @@ export const standardLibraryFunctions = [
   'floor',
   'ceiling',
   'roundToNearest',
-  'selectDominant',
-  'selectSubmissive',
-  'unconsciousInt',
-  'unconsciousBool',
   'squareRoot',
+  'absoluteDepth',
+  'Max',
+  'Min',
+  'Log',
+  'Log10',
+  'Exp',
+  'Random',
+  'RandomInt',
+] as const;
+
+/**
+ * Standard library - String functions (MindWeaver)
+ */
+export const stringFunctions = [
   'trimEdges',
   'measureDepth',
-  'fragmentMemory',
-  'mergeThoughts',
-  'vaultSize',
   'toUpper',
   'toLower',
   'reverseTrance',
@@ -85,6 +139,26 @@ export const standardLibraryFunctions = [
   'replaceAllMemories',
   'startsWithSuggestion',
   'endsWithAwakening',
+  'Trim',
+  'TrimStart',
+  'TrimEnd',
+  'IndexOf',
+  'LastIndexOf',
+  'StartsWith',
+  'EndsWith',
+  'PadLeft',
+  'PadRight',
+  'Split',
+  'Join',
+] as const;
+
+/**
+ * Standard library - Array/Collection functions (MemoryPalace)
+ */
+export const arrayFunctions = [
+  'fragmentMemory',
+  'mergeThoughts',
+  'vaultSize',
   'sortMemories',
   'reverseMemories',
   'firstMemory',
@@ -92,13 +166,111 @@ export const standardLibraryFunctions = [
   'mapMemories',
   'filterMemories',
   'reduceToEssence',
+  'ArrayLength',
+  'ArrayGet',
+  'ArraySlice',
+  'ArrayContains',
+  'ArrayIndexOf',
+  'ArrayConcat',
+] as const;
+
+/**
+ * Standard library - Data structure constructors
+ */
+export const dataStructures = [
   'MindStack',
   'ThoughtQueue',
   'MemoryMap',
   'createVault',
   'storeMemory',
   'peekAtMemory',
-  'absoluteDepth',
+] as const;
+
+/**
+ * Standard library - Conversion functions
+ */
+export const conversionFunctions = [
+  'ToInt',
+  'ToDouble',
+  'ToString',
+  'ToBoolean',
+  'ToChar',
+] as const;
+
+/**
+ * Standard library - Random/Selection functions
+ */
+export const randomFunctions = [
+  'unconsciousInt',
+  'unconsciousBool',
+  'selectDominant',
+  'selectSubmissive',
+] as const;
+
+/**
+ * Standard library - Hypnotic functions
+ */
+export const hypnoticFunctions = [
+  'HypnoticVisualization',
+  'ProgressiveRelaxation',
+  'HypnoticSuggestion',
+  'TranceDeepening',
+  'HypnoticPatternMatching',
+  'HypnoticTimeDilation',
+  'HypnoticMemoryEnhancement',
+  'HypnoticCreativityBoost',
+] as const;
+
+/**
+ * Standard library - System/Time functions
+ */
+export const systemFunctions = [
+  'GetCurrentTime',
+  'GetCurrentDate',
+  'GetCurrentTimeString',
+  'GetCurrentDateTime',
+  'GetEnvironmentVariable',
+  'DebugPrint',
+  'DebugPrintType',
+] as const;
+
+/**
+ * Standard library - Advanced functions (ML, Network, DB)
+ */
+export const advancedFunctions = [
+  'LinearRegression',
+  'CalculateMean',
+  'CalculateStandardDeviation',
+  'CreateRecord',
+  'GetRecordValue',
+  'SetRecordValue',
+  'HttpGet',
+  'HttpPost',
+] as const;
+
+/**
+ * Combined standard library functions
+ */
+export const standardLibraryFunctions = [
+  ...mathFunctions,
+  ...stringFunctions,
+  ...arrayFunctions,
+  ...dataStructures,
+  ...conversionFunctions,
+  ...randomFunctions,
+  ...hypnoticFunctions,
+  ...systemFunctions,
+  ...advancedFunctions,
+] as const;
+
+/**
+ * All keywords for completion
+ */
+export const keywordCompletionList = [
+  ...coreKeywords,
+  ...typeKeywords,
+  ...operatorSynonyms,
+  ...controlFlowHelpers,
 ] as const;
 
 export const hoverTranslationKeys: Record<string, keyof LocalTranslations> = {
@@ -154,22 +326,47 @@ export const snippetTemplates: SnippetTemplate[] = [
     body: 'Focus {\n\t${1:// code}\n} Relax',
   },
   {
+    label: 'Focus with entrance',
+    detail: 'Complete program structure with entrance block',
+    documentation:
+      'Creates a full HypnoScript program with entrance initialization',
+    body: 'Focus {\n\tentrance {\n\t\t${1:// initialization}\n\t}\n\n\t${2:// main code}\n\n\tfinale {\n\t\t${3:// cleanup}\n\t}\n} Relax',
+  },
+  {
     label: 'session',
     detailKey: 'comp_session',
     documentationKey: 'comp_session',
-    body: 'session ${1:Name} {\n\texpose ${2:feld}: ${3:type};\n\tconceal ${4:secret}: ${5:type};\n\n\tsuggestion constructor(${6:args}) {\n\t\tthis.${2} = ${2};\n\t\tthis.${4} = ${4};\n\t}\n}',
+    body: 'session ${1:Name} {\n\texpose ${2:field}: ${3:type};\n\tconceal ${4:secret}: ${5:type};\n\n\tsuggestion constructor(${6:args}) {\n\t\tthis.${2} = ${2};\n\t\tthis.${4} = ${4};\n\t}\n\n\tsuggestion ${7:method}(${8:params}): ${9:returnType} {\n\t\t${0:// method body}\n\t}\n}',
   },
   {
     label: 'tranceify',
     detailKey: 'comp_tranceify',
     documentationKey: 'comp_tranceify',
-    body: 'tranceify ${1:Name} {\n\t${2:feld1}: ${3:type};\n\t${4:feld2}: ${5:type};\n}',
+    body: 'tranceify ${1:Name} {\n\t${2:field1}: ${3:type};\n\t${4:field2}: ${5:type};\n}',
+  },
+  {
+    label: 'suggestion (function)',
+    detail: 'Define a function',
+    documentation: 'Creates a typed function with parameters and return type',
+    body: 'suggestion ${1:functionName}(${2:params}): ${3:returnType} {\n\t${4:// function body}\n\tawaken ${0:result};\n}',
+  },
+  {
+    label: 'mesmerize suggestion (async)',
+    detail: 'Define an async function',
+    documentation: 'Creates an asynchronous function that can use await',
+    body: 'mesmerize suggestion ${1:asyncFunction}(${2:params}): ${3:returnType} {\n\t${4:// async body}\n\tawaken ${0:result};\n}',
   },
   {
     label: 'entrance',
     detailKey: 'comp_entrance',
     documentationKey: 'comp_entrance',
-    body: 'entrance {\n\t${1:// initial code}\n}',
+    body: 'entrance {\n\t${1:// initialization code}\n}',
+  },
+  {
+    label: 'finale',
+    detail: 'Cleanup block that runs before Relax',
+    documentation: 'Defines a finale block for cleanup operations',
+    body: 'finale {\n\t${1:// cleanup code}\n}',
   },
   {
     label: 'deepFocus',
@@ -181,46 +378,88 @@ export const snippetTemplates: SnippetTemplate[] = [
     label: 'trigger',
     detailKey: 'snippet_trigger',
     documentationKey: 'snippet_trigger',
-    body: 'trigger ${1:onEvent} = suggestion(${2:params}) {\n\t${0:// logic}\n};',
+    body: 'trigger ${1:onEvent} = suggestion(${2:params}) {\n\t${0:// event handler logic}\n};',
+  },
+  {
+    label: 'entrain (pattern matching)',
+    detail: 'Pattern matching expression',
+    documentation:
+      'Creates an entrain block for pattern matching with when clauses',
+    body: 'entrain ${1:value} {\n\twhen ${2:pattern1} => ${3:// action1};\n\twhen ${4:pattern2} => ${5:// action2};\n\totherwise => ${0:// default action};\n}',
+  },
+  {
+    label: 'if-else',
+    detail: 'Conditional block',
+    documentation: 'Standard if-else conditional structure',
+    body: 'if (${1:condition}) {\n\t${2:// true branch}\n} else {\n\t${3:// false branch}\n}',
+  },
+  {
+    label: 'if (hypnotic)',
+    detail: 'if-block using youAreFeelingVerySleepy',
+    documentation:
+      "Uses 'youAreFeelingVerySleepy' instead of '==' for comparisons",
+    body: 'if (${1:variable} youAreFeelingVerySleepy ${2:value}) {\n\t${3:// code}\n} else {\n\t${4:// alternative code}\n}',
+  },
+  {
+    label: 'while loop',
+    detail: 'While loop structure',
+    documentation: 'Standard while loop',
+    body: 'while (${1:condition}) {\n\t${2:// loop body}\n}',
+  },
+  {
+    label: 'loop (for-style)',
+    detail: 'For-style loop with initialization, condition, and increment',
+    documentation: 'C-style for loop equivalent',
+    body: 'loop (induce ${1:i}: number = 0; ${1:i} < ${2:limit}; ${1:i} = ${1:i} + 1) {\n\t${0:// loop body}\n}',
+  },
+  {
+    label: 'pendulum (bidirectional loop)',
+    detail: 'Bidirectional loop',
+    documentation: 'Loop that runs forward and backward',
+    body: 'pendulum (induce ${1:i}: number = 0; ${1:i} < ${2:limit}; ${1:i} = ${1:i} + 1) {\n\t${0:// loop body}\n}',
   },
   {
     label: 'repeatAction',
     detailKey: 'snippet_repeatAction',
     documentationKey: 'snippet_repeatAction',
-    body: 'repeatAction(${1:count}, suggestion() {\n\t${0}// action\n});',
+    body: 'repeatAction(${1:count}, suggestion() {\n\t${0:// action}\n});',
   },
   {
-    label: 'if (Operator-Synonym)',
-    detail: 'if-block using youAreFeelingVerySleepy',
-    documentation:
-      "Uses 'youAreFeelingVerySleepy' instead of '==' for comparisons.",
-    body: 'if (${1:variable} youAreFeelingVerySleepy ${2:value}) {\n\t${3:// code}\n} else {\n\t${4:// alternative code}\n}',
+    label: 'repeatWhile',
+    detail: 'Repeat while condition is true',
+    documentation: 'Functional repeat-while helper from DeepMind',
+    body: 'repeatWhile(suggestion(): boolean {\n\tawaken ${1:condition};\n}, suggestion() {\n\t${0:// action}\n});',
   },
   {
-    label: 'Operator (Greater than)',
-    detail: "Uses lookAtTheWatch as '>'",
-    documentation:
-      "Applies 'lookAtTheWatch' to check for greater-than comparisons.",
-    body: '${1:variable} lookAtTheWatch ${2:value}',
+    label: 'tryOrAwaken',
+    detail: 'Error handling block',
+    documentation: 'Try-catch equivalent for error handling',
+    body: 'tryOrAwaken(suggestion() {\n\t${1:// try block}\n}, suggestion(${2:error}) {\n\t${0:// error handler}\n});',
   },
   {
-    label: 'Operator (Less than)',
-    detail: "Uses fallUnderMySpell as '<'",
-    documentation: "Applies 'fallUnderMySpell' to compare values like '<'.",
-    body: '${1:variable} fallUnderMySpell ${2:value}',
+    label: 'induce variable',
+    detail: 'Variable declaration',
+    documentation: 'Declare a typed variable',
+    body: 'induce ${1:varName}: ${2:type} = ${0:value};',
   },
   {
-    label: 'Operator (Not equal)',
-    detail: "Classic '!=' comparison",
-    documentation: 'Provides the standard inequality operator snippet.',
-    body: '${1:variable} != ${2:value}',
+    label: 'freeze constant',
+    detail: 'Immutable constant',
+    documentation: 'Declare an immutable value',
+    body: 'freeze ${1:CONST_NAME}: ${2:type} = ${0:value};',
   },
-];
-
-export const keywordCompletionList = [
-  ...coreKeywords,
-  ...controlFlowHelpers,
-  ...operatorSynonyms,
+  {
+    label: 'sharedTrance global',
+    detail: 'Module-level shared state',
+    documentation: 'Declare a shared module-level variable',
+    body: 'sharedTrance ${1:induce} ${2:globalVar}: ${3:type} = ${0:value};',
+  },
+  {
+    label: 'mindLink import',
+    detail: 'Import from another module',
+    documentation: 'Import functionality from another HypnoScript file',
+    body: 'mindLink { ${1:exports} } from "${0:./module}";',
+  },
 ];
 
 export const completionTriggerCharacters = Array.from(

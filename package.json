@@ -21,10 +21,11 @@
     "email": "support@hypnose-stammtisch.de"
   },
   "scripts": {
+    "validate:i18n": "node ./scripts/validate-i18n.mjs",
     "compile": "tsc",
     "watch": "tsc --watch",
     "test": "npm run compile && node ./out/test/runTest.js",
-    "pretest": "npm run compile",
+    "pretest": "npm run validate:i18n",
     "package": "npx vsce package",
     "package-list": "npx vsce ls",
     "vsce-login": "npx vsce login HypnoScriptTeam",

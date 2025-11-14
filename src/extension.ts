@@ -12,7 +12,7 @@ import {
   collectDocumentSymbols,
   collectFoldingRanges,
 } from './features/structure';
-import { HypnoScriptFormatter } from './formatter';
+import { HypnoScriptFormatter, HypnoScriptRangeFormatter } from './formatter';
 import { setLocale, t } from './i18n';
 import {
   completionTriggerCharacters,
@@ -21,8 +21,12 @@ import {
   snippetTemplates,
   standardLibraryFunctions,
 } from './languageFacts';
+import { HypnoScriptCompletionProvider } from './providers/CompletionProvider';
+import { HypnoScriptDiagnosticProvider } from './providers/DiagnosticProvider';
+import { HypnoScriptHoverProvider } from './providers/HoverProvider';
 
 let client: LanguageClient;
+let diagnosticProvider: HypnoScriptDiagnosticProvider;
 
 export async function activate(context: vscode.ExtensionContext) {
   try {
@@ -36,6 +40,17 @@ export async function activate(context: vscode.ExtensionContext) {
 
     const serverModule = context.asAbsolutePath(path.join('out', 'server.js'));
 
+    // ========== COMPLETION PROVIDERS ==========
+
+    // Intelligente kontextbasierte Completion
+    const intelligentCompletionProvider =
+      vscode.languages.registerCompletionItemProvider(
+        'hypnoscript',
+        new HypnoScriptCompletionProvider(),
+        ...'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+      );
+
+    // Legacy Keyword Completion (als Fallback)
     const createKeywordCompletionItems = () =>
       keywordCompletionList.map((keyword) => {
         const item = new vscode.CompletionItem(
@@ -116,6 +131,15 @@ export async function activate(context: vscode.ExtensionContext) {
         ...snippetTriggerCharacters
       );
 
+    // ========== HOVER PROVIDER ==========
+
+    // Intelligenter Hover Provider
+    const intelligentHoverProvider = vscode.languages.registerHoverProvider(
+      'hypnoscript',
+      new HypnoScriptHoverProvider()
+    );
+
+    // Legacy Hover Provider (als Fallback)
     const hoverProvider = vscode.languages.registerHoverProvider(
       'hypnoscript',
       {
@@ -136,11 +160,49 @@ export async function activate(context: vscode.ExtensionContext) {
       }
     );
 
+    // ========== FORMATTERS ==========
+
     const formatterProvider =
       vscode.languages.registerDocumentFormattingEditProvider(
         'hypnoscript',
         new HypnoScriptFormatter()
       );
+
+    const rangeFormatterProvider =
+      vscode.languages.registerDocumentRangeFormattingEditProvider(
+        'hypnoscript',
+        new HypnoScriptRangeFormatter()
+      );
+
+    // ========== DIAGNOSTICS ==========
+
+    diagnosticProvider = new HypnoScriptDiagnosticProvider();
+
+    // Analyse bei Dokumentänderungen
+    const analyzeDocument = (document: vscode.TextDocument) => {
+      if (document.languageId === 'hypnoscript') {
+        diagnosticProvider.analyzeDo(document);
+      }
+    };
+
+    // Event-Listener für Diagnostics
+    context.subscriptions.push(
+      vscode.workspace.onDidOpenTextDocument(analyzeDocument),
+      vscode.workspace.onDidChangeTextDocument((event) => {
+        analyzeDocument(event.document);
+      }),
+      vscode.workspace.onDidSaveTextDocument(analyzeDocument),
+      vscode.workspace.onDidCloseTextDocument((document) => {
+        if (document.languageId === 'hypnoscript') {
+          diagnosticProvider.clear(document);
+        }
+      })
+    );
+
+    // Initiale Analyse aller offenen Dokumente
+    vscode.workspace.textDocuments.forEach(analyzeDocument);
+
+    // ========== LANGUAGE SERVER ==========
 
     const serverOptions: ServerOptions = {
       run: { module: serverModule, transport: TransportKind.ipc },
@@ -161,6 +223,8 @@ export async function activate(context: vscode.ExtensionContext) {
       clientOptions
     );
 
+    // ========== DOCUMENT SYMBOLS & FOLDING ==========
+
     const documentSymbolProvider =
       vscode.languages.registerDocumentSymbolProvider('hypnoscript', {
         provideDocumentSymbols(document) {
@@ -177,6 +241,8 @@ export async function activate(context: vscode.ExtensionContext) {
       }
     );
 
+    // ========== CODE ACTIONS ==========
+
     const codeActionProvider = vscode.languages.registerCodeActionsProvider(
       'hypnoscript',
       new HypnoScriptCodeActionProvider(),
@@ -186,40 +252,25 @@ export async function activate(context: vscode.ExtensionContext) {
       }
     );
 
-    context.subscriptions.push(hoverProvider);
-    context.subscriptions.push(completionProvider);
-    context.subscriptions.push(structureCompletionProvider);
-    context.subscriptions.push(formatterProvider);
-    context.subscriptions.push(documentSymbolProvider);
-    context.subscriptions.push(foldingRangeProvider);
-    context.subscriptions.push(codeActionProvider);
+    // ========== REGISTRIERUNG ==========
+
+    context.subscriptions.push(
+      intelligentCompletionProvider,
+      intelligentHoverProvider,
+      hoverProvider,
+      completionProvider,
+      structureCompletionProvider,
+      formatterProvider,
+      rangeFormatterProvider,
+      diagnosticProvider.getCollection(),
+      documentSymbolProvider,
+      foldingRangeProvider,
+      codeActionProvider
+    );
 
     client.start();
 
-    // Neuen Listener für Diagnosen mit internationalisierten Texten hinzufügen:
-    vscode.languages.onDidChangeDiagnostics(() => {
-      const errorDiagnostics = vscode.window.visibleTextEditors
-        .filter((editor) => editor.document.languageId === 'hypnoscript')
-        .flatMap((editor) =>
-          vscode.languages.getDiagnostics(editor.document.uri)
-        )
-        .filter((diag) => diag.severity === vscode.DiagnosticSeverity.Error);
-
-      if (errorDiagnostics.length > 0) {
-        vscode.window
-          .showErrorMessage(
-            t('diagnostic_error_popup'),
-            t('diagnostic_solution_button')
-          )
-          .then((selection) => {
-            if (selection === t('diagnostic_solution_button')) {
-              vscode.window.showInformationMessage(
-                t('diagnostic_solution_message')
-              );
-            }
-          });
-      }
-    });
+    logger.info('HypnoScript extension fully activated');
   } catch (error) {
     logger.error('Fehler bei der Extension-Aktivierung: ' + error);
   }
