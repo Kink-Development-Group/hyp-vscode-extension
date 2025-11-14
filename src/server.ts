@@ -87,6 +87,7 @@ function checkSyntaxErrors(document: TextDocument): Diagnostic[] {
       },
       message: t('error_no_focus'),
       source: 'hypnoscript-linter',
+      code: 'HS_NO_FOCUS',
     });
   }
 
@@ -116,6 +117,7 @@ function checkSyntaxErrors(document: TextDocument): Diagnostic[] {
       },
       message: t('error_no_relax'),
       source: 'hypnoscript-linter',
+      code: 'HS_NO_RELAX',
     });
   }
 
@@ -183,6 +185,7 @@ function checkSyntaxErrors(document: TextDocument): Diagnostic[] {
         },
         message: t('error_missing_semicolon'),
         source: 'hypnoscript-linter',
+        code: 'HS_MISSING_SEMICOLON',
       });
     }
   });

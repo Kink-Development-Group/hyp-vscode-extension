@@ -45,7 +45,9 @@
   "builtin_function_hint": "Standardbibliothek-Helfer",
   "snippet_focus_relax": "Erzeugt ein Focus/Relax-Grundgerüst",
   "snippet_trigger": "Deklariert einen Trigger-Callback",
-  "snippet_repeatAction": "repeatAction-Helfer mit inline suggestion",
+  "snippet_repeatAction": "repeatAction-Helfer mit Inline-Vorschlag",
+  "codeaction_focus_wrapper": "Dokument mit Focus/Relax umschließen",
+  "codeaction_add_semicolon": "Fehlendes Semikolon einfügen"
   "extension_activation": "HypnoScript Erweiterung aktiviert.",
   "comp_focus": "Startet ein HypnoScript-Programm",
   "comp_relax": "Beendet ein HypnoScript-Programm",

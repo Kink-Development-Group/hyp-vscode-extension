@@ -58,4 +58,6 @@ export interface LocalTranslations {
   snippet_focus_relax: string;
   snippet_trigger: string;
   snippet_repeatAction: string;
+  codeaction_focus_wrapper: string;
+  codeaction_add_semicolon: string;
 }

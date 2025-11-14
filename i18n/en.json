@@ -56,5 +56,7 @@
   "builtin_function_hint": "Standard library helper",
   "snippet_focus_relax": "Creates a Focus/Relax scaffold",
   "snippet_trigger": "Declares a trigger callback",
-  "snippet_repeatAction": "repeatAction helper with inline suggestion"
+  "snippet_repeatAction": "repeatAction helper with inline suggestion",
+  "codeaction_focus_wrapper": "Wrap document with Focus/Relax",
+  "codeaction_add_semicolon": "Add missing semicolon"
 }

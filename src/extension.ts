@@ -7,6 +7,11 @@ import {
   TransportKind,
 } from 'vscode-languageclient/node';
 import { config, logger } from './config';
+import { HypnoScriptCodeActionProvider } from './features/codeActions';
+import {
+  collectDocumentSymbols,
+  collectFoldingRanges,
+} from './features/structure';
 import { HypnoScriptFormatter } from './formatter';
 import { setLocale, t } from './i18n';
 import {
@@ -156,10 +161,38 @@ export async function activate(context: vscode.ExtensionContext) {
       clientOptions
     );
 
+    const documentSymbolProvider =
+      vscode.languages.registerDocumentSymbolProvider('hypnoscript', {
+        provideDocumentSymbols(document) {
+          return collectDocumentSymbols(document);
+        },
+      });
+
+    const foldingRangeProvider = vscode.languages.registerFoldingRangeProvider(
+      'hypnoscript',
+      {
+        provideFoldingRanges(document) {
+          return collectFoldingRanges(document);
+        },
+      }
+    );
+
+    const codeActionProvider = vscode.languages.registerCodeActionsProvider(
+      'hypnoscript',
+      new HypnoScriptCodeActionProvider(),
+      {
+        providedCodeActionKinds:
+          HypnoScriptCodeActionProvider.providedCodeActionKinds,
+      }
+    );
+
     context.subscriptions.push(hoverProvider);
     context.subscriptions.push(completionProvider);
     context.subscriptions.push(structureCompletionProvider);
     context.subscriptions.push(formatterProvider);
+    context.subscriptions.push(documentSymbolProvider);
+    context.subscriptions.push(foldingRangeProvider);
+    context.subscriptions.push(codeActionProvider);
 
     client.start();
 
