@@ -5,9 +5,11 @@ Diese Erweiterung fügt Syntax-Highlighting, Auto-Completion und Linter-Support 
 ## Funktionen
 
 - ✅ Syntax-Highlighting für `.hyp`-Dateien
-- ✅ Auto-Completion für `induce`, `session`, `tranceify`
-- ✅ Code-Formatter für einheitlichen Stil
-- ✅ Linter für Fehleranalyse
+- ✅ Auto-Completion für alle aktuellen HypnoScript-Schlüsselwörter, Operator-Synonyme und Standardbibliotheken (MindStack, StringSpell, Hypno-Math, …)
+- ✅ Kontext-Snippets für Sessions, Trigger, repeatAction, Focus/Relax-Grundgerüste u. v. m.
+- ✅ Mehrsprachige Hover-Texte (DE/EN) für klassische und neue Sprachkonstrukte wie `freeze`, `whisper` oder `trigger`
+- ✅ Erweiterter Linter mit Prüfungen für doppelte bzw. fehlende `Focus`/`Relax`-Blöcke und unausgewogene Klammern
+- ✅ Formatter für einheitlichen Stil
 
 ## Installation
 

@@ -29,8 +29,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Unterstützung für Operatoren hinzugefügt!
 - Erweiterte Internationalisierung:
-  - Neue Lokalisierungsschlüssel eingeführt: 
+  - Neue Lokalisierungsschlüssel eingeführt:
     - diagnostic_error_popup
     - diagnostic_solution_message
     - diagnostic_solution_button
   - Anpassungen in extension.ts, i18n.ts, und localTranslations zur vollständigen Übersetzung.
+
+## [1.4.0] - 2025-11-14
+
+- Gemeinsame Sprachdatenbasis (`languageFacts.ts`) eingeführt, sodass Client & Server dieselben Keywords, Operatoren und Snippets verwenden (DRY).
+- Auto-Completion deckt jetzt alle neuen HypnoScript-Schlüsselwörter, Operator-Synonyme sowie Standardbibliotheksfunktionen ab (MindStack, StringSpell, Hypno-Math, …).
+- Neue Snippets für Focus/Relax-Gerüst, Trigger, repeatAction und Operator-Synonyme.
+- Hover-Texte für `freeze`, `whisper`, `trigger`, `repeatAction` u. v. m. – lokalisiert in DE/EN.
+- Linter erkennt doppelte oder fehlplatzierte `Focus`/`Relax`-Blöcke zusätzlich zu den bestehenden Syntaxregeln.
+- Übersetzungen und README aktualisiert.
