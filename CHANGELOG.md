@@ -244,3 +244,9 @@ Getestet mit allen Beispieldateien:
 - Goto Definition nur eingeschränkt
 - Rename Symbol noch nicht verfügbar
 - Semantic Highlighting geplant
+
+## [1.5.1] - 2025-11-14
+
+### 🐛 Bugfixes & Verbesserungen
+
+- Fehler bei Release Pipeline behoben
