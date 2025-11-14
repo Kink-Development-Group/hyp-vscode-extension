@@ -44,170 +44,70 @@ export class HypnoScriptFormatter implements vscode.DocumentFormattingEditProvid
       const line = lines[i];
       const trimmed = line.trim();
 
-      // Blockkommentare tracken
-      if (trimmed.startsWith('/*')) {
-        inBlockComment = true;
-      }
-      if (inBlockComment) {
-        formattedLines.push(line); // Kommentare nicht formatieren
-        if (trimmed.endsWith('*/')) {
-          inBlockComment = false;
-        }
-        continue;
-      }
-
-      // Leere Zeilen und Einzeilen-Kommentare beibehalten
-      if (trimmed === '' || trimmed.startsWith('//')) {
+      // Blockkommentare unverändert übernehmen
+      if (trimmed.startsWith('/*') || inBlockComment) {
+        inBlockComment = !trimmed.endsWith('*/');
         formattedLines.push(line);
         continue;
       }
 
-      // Indent-Level anpassen VOR der Zeile
-      if (this.isClosingBrace(trimmed)) {
-        indentLevel = Math.max(0, indentLevel - 1);
+      // Leere Zeilen beibehalten
+      if (trimmed === '') {
+        formattedLines.push('');
+        continue;
       }
 
-      // Zeile formatieren
-      let formattedLine = this.formatLine(trimmed);
+      // Einzelne Kommentarzeilen mit aktueller Einrückung versehen
+      if (this.isLineComment(trimmed)) {
+        const indent = this.getIndent(indentLevel);
+        formattedLines.push(indent + trimmed);
+        continue;
+      }
 
-      // Einrückung hinzufügen
+      const leadingClosings = this.countLeadingClosings(trimmed);
+      const keywordDedent = this.startsWithDedentKeyword(trimmed) ? 1 : 0;
+      const dedentAmount = Math.max(leadingClosings, keywordDedent);
+      indentLevel = Math.max(0, indentLevel - dedentAmount);
+
       const indent = this.getIndent(indentLevel);
-      formattedLine = indent + formattedLine;
+      const normalizedLine = this.normalizeLine(trimmed);
+      formattedLines.push(indent + normalizedLine);
 
-      formattedLines.push(formattedLine);
+      const openCount = this.countChar(trimmed, '{');
+      const totalClosing = this.countChar(trimmed, '}');
+      const remainingClosings = Math.max(0, totalClosing - leadingClosings);
 
-      // Indent-Level anpassen NACH der Zeile
-      if (this.isOpeningBrace(trimmed)) {
-        indentLevel++;
-      }
+      indentLevel += openCount;
+      indentLevel = Math.max(0, indentLevel - remainingClosings);
     }
 
     return formattedLines.join('\n');
   }
 
-  /**
-   * Formatiert eine einzelne Zeile
-   */
-  private formatLine(line: string): string {
-    let formatted = line;
-
-    // Leerzeichen um Operatoren
-    formatted = this.formatOperators(formatted);
-
-    // Leerzeichen nach Kommas
-    formatted = formatted.replace(/,(?!\s)/g, ', ');
-
-    // Leerzeichen nach Keywords
-    formatted = this.formatKeywords(formatted);
-
-    // Keine Leerzeichen vor Semikolon
-    formatted = formatted.replace(/\s+;/g, ';');
-
-    // Klammern formatieren
-    formatted = this.formatBraces(formatted);
-
-    return formatted;
+  private isLineComment(line: string): boolean {
+    return line.startsWith('//');
   }
 
-  /**
-   * Fügt Leerzeichen um Operatoren hinzu
-   */
-  private formatOperators(line: string): string {
-    // Arithmetische Operatoren
-    line = line.replace(/([+\-*/%])(?!\s)/g, '$1 ');
-    line = line.replace(/(?<!\s)([+\-*/%])/g, ' $1');
-
-    // Vergleichsoperatoren
-    line = line.replace(/(==|!=|>=|<=|>|<)(?!\s)/g, '$1 ');
-    line = line.replace(/(?<!\s)(==|!=|>=|<=|>|<)/g, ' $1');
-
-    // Logische Operatoren
-    line = line.replace(/(&&|\|\|)(?!\s)/g, '$1 ');
-    line = line.replace(/(?<!\s)(&&|\|\|)/g, ' $1');
-
-    // Zuweisung
-    line = line.replace(/=(?!=)(?!\s)/g, '= ');
-    line = line.replace(/(?<!\s)=(?!=)/g, ' =');
-
-    // Hypnotische Operatoren (bereits Wörter, kein Spacing nötig)
-
-    return line;
+  private countLeadingClosings(line: string): number {
+    const match = line.match(/^(\})+/);
+    return match ? match[0].length : 0;
   }
 
-  /**
-   * Formatiert Keywords
-   */
-  private formatKeywords(line: string): string {
-    const keywords = [
-      'Focus',
-      'Relax',
-      'entrance',
-      'finale',
-      'if',
-      'else',
-      'while',
-      'loop',
-      'pendulum',
-      'induce',
-      'implant',
-      'embed',
-      'freeze',
-      'sharedTrance',
-      'suggestion',
-      'awaken',
-      'observe',
-      'whisper',
-      'command',
-      'session',
-      'tranceify',
-      'expose',
-      'conceal',
-      'entrain',
-      'when',
-      'otherwise',
-      'mesmerize',
-      'await',
-      'surrenderTo',
-    ];
-
-    keywords.forEach((keyword) => {
-      // Leerzeichen nach Keyword (wenn gefolgt von Nicht-Leerzeichen)
-      const pattern = new RegExp(`\\b${keyword}(?!\\s)`, 'g');
-      line = line.replace(pattern, `${keyword} `);
-    });
-
-    return line;
+  private startsWithDedentKeyword(line: string): boolean {
+    const keywords = ['else', 'otherwise', 'Relax'];
+    return keywords.some(
+      (keyword) =>
+        line === keyword || line.startsWith(`${keyword} `) || line.startsWith(`${keyword}{`)
+    );
   }
 
-  /**
-   * Formatiert Klammern
-   */
-  private formatBraces(line: string): string {
-    // Öffnende Klammer mit Leerzeichen davor (außer bei Funktionsaufrufen)
-    if (line.includes('{') && !line.match(/\w+\s*\{/)) {
-      line = line.replace(/\{/g, ' {');
-    }
-
-    // Schließende Klammer auf eigener Zeile (wird im Haupt-Formatierungsprozess behandelt)
-
-    return line;
+  private normalizeLine(line: string): string {
+    return line.replace(/\s+$/g, '');
   }
 
-  /**
-   * Prüft, ob eine Zeile eine öffnende Klammer enthält
-   */
-  private isOpeningBrace(line: string): boolean {
-    // Zähle öffnende vs. schließende Klammern
-    const openCount = (line.match(/\{/g) || []).length;
-    const closeCount = (line.match(/\}/g) || []).length;
-    return openCount > closeCount;
-  }
-
-  /**
-   * Prüft, ob eine Zeile mit schließender Klammer beginnt
-   */
-  private isClosingBrace(line: string): boolean {
-    return line.startsWith('}');
+  private countChar(line: string, char: string): number {
+    const regex = new RegExp(`\\${char}`, 'g');
+    return (line.match(regex) || []).length;
   }
 
   /**

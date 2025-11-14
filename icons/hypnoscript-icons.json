@@ -1,13 +1,14 @@
 {
-	"iconDefinitions": {
-		"hypnoscript-icon": {
-			"iconPath": "./icons/hypnoscript.png"
-		}
-	},
-	"fileExtensions": {
-		"hyp": "hypnoscript-icon"
-	},
-	"languageIds": {
-		"hypnoscript": "hypnoscript-icon"
-	}
+  "iconDefinitions": {
+    "hypnoscript-icon": {
+      "iconPath": "./hypnoscript.png"
+    }
+  },
+  "fileExtensions": {
+    "hyp": "hypnoscript-icon",
+    "hypnoscript": "hypnoscript-icon"
+  },
+  "languageIds": {
+    "hypnoscript": "hypnoscript-icon"
+  }
 }

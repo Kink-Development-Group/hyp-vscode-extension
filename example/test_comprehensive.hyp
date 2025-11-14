@@ -57,7 +57,8 @@ Focus {
         observe "Loop iteration: " + i;
         if (i youAreFeelingVerySleepy 1) deepFocus {
             observe "First iteration!";
-            snap;  // Break
+            // Break
+            snap;
         }
     }
 

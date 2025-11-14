@@ -106,8 +106,10 @@ Focus {
     observe "  ToBoolean(42) = " + ToBoolean(42);
 
     observe "Character Conversions:";
-    observe "  ToChar(65) = " + ToChar(65);  // 'A'
-    observe "  ToChar(97) = " + ToChar(97);  // 'a'
+    // 'A'
+    observe "  ToChar(65) = " + ToChar(65);
+    // 'a'
+    observe "  ToChar(97) = " + ToChar(97);
 
     // ===== ERWEITERTE HYPNOTISCHE FUNKTIONEN =====;
     observe "=== Extended Hypnotic Functions ===";
@@ -306,8 +308,7 @@ Focus {
     observe "Complex calculation: Max(2^8, Min(100,50)) + Abs(-15) + Round(3.7) = " + finalCalculation;
 
     // String formatting with all features
-    induce formattedOutput = "HypnoScript " + ToUpper("is working perfectly!") + " at " + GetCurrentTimeString() +
-                             " with " + ToString(ArrayLength(mixedArray)) + " mixed array elements";
+    induce formattedOutput = "HypnoScript " + ToUpper("is working perfectly!") + " at " + GetCurrentTimeString() + " with " + ToString(ArrayLength(mixedArray)) + " mixed array elements";
     observe formattedOutput;
 
     // Array processing demonstration

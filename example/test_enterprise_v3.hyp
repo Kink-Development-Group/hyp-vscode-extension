@@ -10,7 +10,7 @@ Focus {
 
     observe "=== NEW Features v1.0.0 ===";
 
-    // Machine Learning Funktionen
+    // Machine Learning Funktionen;
     observe "--- Machine Learning Functions ---";
     induce xValues = [1, 2, 3, 4, 5];
     induce yValues = [2, 4, 6, 8, 10];
@@ -24,13 +24,13 @@ Focus {
     observe "Mean: " + mean;
     observe "Standard Deviation: " + stdDev;
 
-    // Netzwerk-Funktionen
+    // Netzwerk-Funktionen;
     observe "--- Network Functions ---";
     observe "Testing HTTP functions (simulated)...";
     // induce response = HttpGet("https://api.example.com/data");
     // observe "HTTP Response: " + response;
 
-    // Datenbank-ähnliche Funktionen
+    // Datenbank-ähnliche Funktionen;
     observe "--- Database-like Functions ---";
     induce keys = ["name", "age", "city"];
     induce values = ["Alice", 30, "Berlin"];
@@ -41,19 +41,19 @@ Focus {
     induce newAge = GetRecordValue(record, "age");
     observe "Updated age: " + newAge;
 
-    // Erweiterte hypnotische Funktionen
+    // Erweiterte hypnotische Funktionen;
     observe "--- Advanced Hypnotic Functions v1.0.0 ---";
     HypnoticPatternMatching("success");
     HypnoticTimeDilation(1.5);
     HypnoticMemoryEnhancement();
     HypnoticCreativityBoost();
 
-    // Performance-Monitoring
+    // Performance-Monitoring;
     observe "--- Performance Monitoring ---";
     induce metrics = GetPerformanceMetrics();
     observe "Performance Metrics: " + metrics;
 
-    // Erweiterte Validierungsfunktionen
+    // Erweiterte Validierungsfunktionen;
     observe "--- Validation Functions ---";
     induce email = "test@example.com";
     induce url = "https://www.example.com";
@@ -62,7 +62,7 @@ Focus {
     observe "URL valid: " + IsValidUrl(url);
     observe "JSON valid: " + IsValidJson(json);
 
-    // Erweiterte Formatierungsfunktionen
+    // Erweiterte Formatierungsfunktionen;
     observe "--- Formatting Functions ---";
     induce number = 123.456789;
     induce amount = 99.99;
@@ -71,7 +71,7 @@ Focus {
     observe "Currency: " + FormatCurrency(amount, "EUR");
     observe "Percentage: " + FormatPercentage(percentage);
 
-    // Erweiterte Array-Operationen
+    // Erweiterte Array-Operationen;
     observe "--- Advanced Array Operations ---";
     induce numbers = [1, 2, 3, 4, 5];
     induce doubled = ArrayMap(numbers, x => x * 2);
@@ -86,7 +86,7 @@ Focus {
     observe "Nested: " + nested;
     observe "Flattened: " + flattened;
 
-    // Erweiterte String-Operationen
+    // Erweiterte String-Operationen;
     observe "--- Advanced String Operations ---";
     induce longText = "This is a very long text that needs to be split into smaller chunks";
     induce chunks = StringSplitByLength(longText, 20);
@@ -115,11 +115,11 @@ Focus {
     // ===== DATEI- UND VERZEICHNIS-OPERATIONEN =====;
     observe "=== File and Directory Operations ===";
 
-    // Testdatei erstellen
+    // Testdatei erstellen;
     induce testContent: string = "This is a test file created by HypnoScript Runtime Edition v1.0.0!\nLine 2: Advanced features working perfectly.\nLine 3: File operations are amazing!\nLine 4: New v1.0.0 features are incredible!";
     WriteFile("test_output_v3.txt", testContent);
 
-    // Datei lesen und analysieren
+    // Datei lesen und analysieren;
     induce readContent: string = ReadFile("test_output_v3.txt");
     observe "File content read: " + readContent;
     observe "File size: " + GetFileSize("test_output_v3.txt") + " bytes";
@@ -127,7 +127,7 @@ Focus {
     observe "File name: " + GetFileName("test_output_v3.txt");
     observe "Directory name: " + GetDirectoryName("test_output_v3.txt");
 
-    // Verzeichnis erstellen und auflisten
+    // Verzeichnis erstellen und auflisten;
     CreateDirectory("hypnoscript_v3_test");
     induce files = GetFiles(".", "*.txt");
     induce directories = GetDirectories(".");
@@ -135,11 +135,11 @@ Focus {
     observe "Files in current directory: " + ArrayLength(files);
     observe "Directories in current directory: " + ArrayLength(directories);
 
-    // Datei anhängen
+    // Datei anhängen;
     AppendFile("test_output_v3.txt", "\nLine 5: Appended content works great!");
     observe "File appended successfully!";
 
-    // Zeilen lesen
+    // Zeilen lesen;
     induce lines = ReadLines("test_output_v3.txt");
     observe "File has " + ArrayLength(lines) + " lines:";
     loop (induce i: number = 0; i < ArrayLength(lines); i = i + 1) {
@@ -149,7 +149,7 @@ Focus {
     // ===== JSON-VERARBEITUNG =====;
     observe "=== JSON Processing ===";
 
-    // Komplexes Objekt erstellen
+    // Komplexes Objekt erstellen;
     session Person {
         expose name: string;
         expose age: number;
@@ -169,11 +169,11 @@ Focus {
     induce skills = ["HypnoScript", "Programming", "Hypnosis", "AI", "Machine Learning"];
     induce person = Person("Dr. Hypnotist v3", 42, skills, true);
 
-    // Zu JSON konvertieren
+    // Zu JSON konvertieren;
     induce jsonData: string = ToJson(person);
     observe "Person as JSON: " + jsonData;
 
-    // Von JSON zurück konvertieren
+    // Von JSON zurück konvertieren;
     induce parsedData = FromJson(jsonData);
     observe "Parsed JSON data: " + parsedData;
 
@@ -270,7 +270,7 @@ Focus {
     // ===== KOMPLEXE ALGORITHMEN UND BEISPIELE =====;
     observe "=== Complex Algorithms and Examples ===";
 
-    // Fibonacci-Funktion mit Session
+    // Fibonacci-Funktion mit Session;
     session MathWizard {
         expose name: string;
         expose version: string;
@@ -301,8 +301,8 @@ Focus {
             induce unique = ArrayUnique(data);
 
             awaken CreateRecord(
-                ["mean", "stdDev", "sorted", "unique", "count"],
-                [mean, stdDev, sorted, unique, ArrayLength(data)]
+            ["mean", "stdDev", "sorted", "unique", "count"],
+            [mean, stdDev, sorted, unique, ArrayLength(data)]
             );
         }
     }
@@ -333,8 +333,8 @@ Focus {
             this.skills = personSkills;
             this.secretId = RandomInt(1000, 9999);
             this.metadata = CreateRecord(
-                ["created", "version", "id"],
-                [GetCurrentDateTime(), "1.0.0", this.secretId]
+            ["created", "version", "id"],
+            [GetCurrentDateTime(), "1.0.0", this.secretId]
             );
         }
 

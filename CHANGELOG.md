@@ -48,6 +48,38 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 🎉 Massive Verbesserungen der Entwicklererfahrung
 
+## [1.5.1] - 2025-11-14
+
+### 🐛 Bugfixes & Verbesserungen
+
+**Code-Qualität**
+
+- ✅ Alle ESLint-Fehler behoben (11 Errors, 23 Warnings)
+- ✅ TypeScript strict mode Kompatibilität verbessert
+- ✅ Floating promises korrekt behandelt
+- ✅ Unused parameters mit Unterstrich-Präfix markiert
+- ✅ Type-Safety verbessert (keine unsafe arguments mehr)
+
+**Language Support**
+
+- ✅ `.hypnoscript` Extension unterstützt (zusätzlich zu `.hyp`)
+- ✅ File Icons für beide Extensions registriert
+- ✅ Icon-Display parallel zu anderen Icon-Themes
+
+**Diagnostics**
+
+- ✅ Verbesserte Semikolon-Prüfung:
+  - Ignoriert Kommentarzeilen (`//` und `/* */`)
+  - Erkennt mehrzeilige Array-Literale
+  - Erkennt umgebrochene Funktionsparameter
+  - Ignoriert Fortsetzungszeilen korrekt
+  - Nur noch echte fehlende Semicolons werden gemeldet
+
+**Imports & Dependencies**
+
+- ✅ Fehlende `LocalTranslations` Imports hinzugefügt
+- ✅ Code-Struktur bereinigt und optimiert
+
 #### ✨ Neue Features
 
 **Syntax-Highlighting komplett überarbeitet**

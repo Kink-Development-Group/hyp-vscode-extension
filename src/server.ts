@@ -159,19 +159,62 @@ function checkSyntaxErrors(document: TextDocument): Diagnostic[] {
     });
   }
 
-  // 4. Überprüfe auf fehlende Strichpunkte am Zeilenende (nur einfache Prüfung).
+  // 4. Überprüfe auf fehlende Strichpunkte am Zeilenende.
+  const statementKeywords = [
+    'induce',
+    'implant',
+    'embed',
+    'freeze',
+    'observe',
+    'whisper',
+    'command',
+    'murmur',
+    'drift',
+    'pauseReality',
+    'anchor',
+    'oscillate',
+    'awaken',
+    'snap',
+    'sink',
+    'sinkTo',
+  ];
+
   const lines = text.split('\n');
   lines.forEach((line, idx) => {
     const trimmed = line.trim();
-    // Überspringe leere Zeilen oder Zeilen, die Blöcke öffnen/schließen
+
+    // Ignoriere leere Zeilen, Kommentare, Blockstrukturen, Relax
     if (
-      trimmed &&
-      !trimmed.endsWith(';') &&
-      !trimmed.endsWith('{') &&
-      !trimmed.endsWith('}') &&
-      // Erlaube Zeilen, die mit "Focus", "Relax", "entrance" etc. beginnen
-      !/^(Focus|Relax|entrance)/.test(trimmed)
+      !trimmed ||
+      trimmed.startsWith('//') ||
+      trimmed.startsWith('/*') ||
+      trimmed.startsWith('*') ||
+      trimmed.endsWith('{') ||
+      trimmed.endsWith('}') ||
+      trimmed === '}' ||
+      trimmed.includes('Relax') ||
+      trimmed === 'Relax' ||
+      /^(Focus|entrance|finale|session|trigger|if|else|while|loop|pendulum)/.test(trimmed)
     ) {
+      return;
+    }
+
+    // Ignoriere Zeilen mit offenen Klammern/Brackets (mehrzeilige Konstrukte)
+    const openParens = (trimmed.match(/\(/g) || []).length;
+    const closeParens = (trimmed.match(/\)/g) || []).length;
+    const openBrackets = (trimmed.match(/\[/g) || []).length;
+    const closeBrackets = (trimmed.match(/\]/g) || []).length;
+
+    if (openParens > closeParens || openBrackets > closeBrackets) {
+      return;
+    }
+
+    // Prüfe nur Zeilen, die mit Statement-Keywords beginnen
+    const startsWithKeyword = statementKeywords.some((kw) =>
+      new RegExp(`^\\s*${kw}\\b`).test(trimmed)
+    );
+
+    if (startsWithKeyword && !trimmed.endsWith(';') && !trimmed.endsWith('{')) {
       diagnostics.push({
         severity: DiagnosticSeverity.Warning,
         range: {

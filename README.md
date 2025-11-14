@@ -1,15 +1,35 @@
 # HypnoScript Support - VSCode Extension
 
-Diese Erweiterung fügt Syntax-Highlighting, Auto-Completion und Linter-Support für HypnoScript-Dateien (`.hyp`) in Visual Studio Code hinzu.
+Diese Erweiterung fügt umfassendes Language-Support für HypnoScript-Dateien (`.hyp`, `.hypnoscript`) in Visual Studio Code hinzu.
 
-## Funktionen
+## ✨ Funktionen
 
-- ✅ Syntax-Highlighting für `.hyp`-Dateien
-- ✅ Auto-Completion für alle aktuellen HypnoScript-Schlüsselwörter, Operator-Synonyme und Standardbibliotheken (MindStack, StringSpell, Hypno-Math, …)
-- ✅ Kontext-Snippets für Sessions, Trigger, repeatAction, Focus/Relax-Grundgerüste u. v. m.
-- ✅ Mehrsprachige Hover-Texte (DE/EN) für klassische und neue Sprachkonstrukte wie `freeze`, `whisper` oder `trigger`
-- ✅ Erweiterter Linter mit Prüfungen für doppelte bzw. fehlende `Focus`/`Relax`-Blöcke und unausgewogene Klammern
-- ✅ Formatter für einheitlichen Stil
+### Syntax & Highlighting
+
+- ✅ Vollständiges Syntax-Highlighting für `.hyp` und `.hypnoscript`-Dateien
+- ✅ Hierarchische Pattern-Organisation mit 10+ Kategorien
+- ✅ 100+ Standard-Library-Funktionen mit Highlighting
+- ✅ Kontext-sensitive Farbgebung
+- ✅ Dedizierte File Icons für HypnoScript-Dateien
+
+### IntelliSense & Completion
+
+- ✅ Intelligente Auto-Completion mit Kontext-Erkennung
+- ✅ 60+ Keywords mit Dokumentation und Snippets
+- ✅ 100+ Standard-Library-Funktionen kategorisiert
+- ✅ 25+ Code-Snippets für häufige Patterns
+- ✅ Mehrsprachige Hover-Texte (DE/EN)
+
+### Code-Qualität
+
+- ✅ Umfassendes Linting-System:
+  - Strukturelle Validierung (Focus/Relax, Klammern)
+  - Intelligente Syntax-Checks (Semicolons, Balance)
+  - Semantische Analyse (Ungenutzte Variablen)
+  - 10+ Diagnostic-Codes mit klaren Fehlermeldungen
+- ✅ Erweiterter Code-Formatter mit konfigurierbarer Einrückung
+- ✅ Code-Actions & Quick-Fixes
+- ✅ Refactoring-Unterstützung
 
 ## Installation
 

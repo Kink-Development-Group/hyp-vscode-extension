@@ -228,10 +228,10 @@ Focus {
     loop (induce i: number = 0; i < ArrayLength(csvArray); i = i + 4) {
         if (i + 3 < ArrayLength(csvArray)) {
             induce personData = [
-                ArrayGet(csvArray, i),      // Name
-                ArrayGet(csvArray, i + 1),  // Age
-                ArrayGet(csvArray, i + 2),  // Job
-                ArrayGet(csvArray, i + 3)   // Status
+            ArrayGet(csvArray, i),      // Name
+            ArrayGet(csvArray, i + 1),  // Age
+            ArrayGet(csvArray, i + 2),  // Job
+            ArrayGet(csvArray, i + 3)   // Status
             ];
             people = ArrayConcat(people, [personData]);
         }
