@@ -278,24 +278,43 @@ export class HypnoScriptDiagnosticProvider {
       const line = document.lineAt(i);
       const trimmed = line.text.trim();
 
-      // Ignoriere leere Zeilen, Kommentare, Blockstrukturen
+      // Ignoriere leere Zeilen, Kommentare, Blockstrukturen, Relax
       if (
         !trimmed ||
         trimmed.startsWith('//') ||
         trimmed.startsWith('/*') ||
         trimmed.endsWith('{') ||
         trimmed.endsWith('}') ||
-        trimmed === '}'
+        trimmed === '}' ||
+        trimmed.startsWith('*') || // Multi-line Kommentar Fortsetzung
+        trimmed.includes('Relax') || // } Relax benötigt kein Semikolon
+        trimmed === 'Relax'
       ) {
         continue;
       }
 
-      // Prüfe, ob Zeile mit Statement-Keyword beginnt und nicht mit ; endet
+      // Ignoriere Zeilen, die offene Klammern/Brackets enthalten (mehrzeilige Konstrukte)
+      const openParens = (trimmed.match(/\(/g) || []).length;
+      const closeParens = (trimmed.match(/\)/g) || []).length;
+      const openBrackets = (trimmed.match(/\[/g) || []).length;
+      const closeBrackets = (trimmed.match(/\]/g) || []).length;
+
+      // Wenn mehr öffnende als schließende Klammern/Brackets: mehrzeilige Anweisung
+      if (openParens > closeParens || openBrackets > closeBrackets) {
+        continue;
+      }
+
+      // Ignoriere Fortsetzungszeilen (Zeilen, die nicht mit Keyword beginnen)
       const startsWithKeyword = statementKeywords.some((kw) =>
         new RegExp(`^\\s*${kw}\\b`).test(trimmed)
       );
 
-      if (startsWithKeyword && !trimmed.endsWith(';') && !trimmed.endsWith('{')) {
+      if (!startsWithKeyword) {
+        continue;
+      }
+
+      // Prüfe, ob Zeile mit Statement-Keyword beginnt und nicht mit ; endet
+      if (!trimmed.endsWith(';') && !trimmed.endsWith('{')) {
         const range = new vscode.Range(i, line.text.length, i, line.text.length);
         diagnostics.push(
           this.createDiagnostic(

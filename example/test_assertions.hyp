@@ -36,4 +36,4 @@ Focus {
     assert(shouldFail == 1) "This assertion should fail because 0 != 1";
 
     observe "All tests completed!";
-} Relax;
+} Relax

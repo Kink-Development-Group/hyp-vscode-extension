@@ -106,7 +106,8 @@ Focus {
         if (i youAreFeelingVerySleepy 1) deepFocus {
             observe "First iteration!";
         } else if (i lookAtTheWatch 2) deepFocus {
-            snap;  // Break aus der Schleife
+            // Break aus der Schleife
+            snap;
         }
         observe "Loop iteration: " + i;
     }
