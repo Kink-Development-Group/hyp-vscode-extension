@@ -25,10 +25,7 @@ export class HypnoScriptHoverProvider implements vscode.HoverProvider {
     // Keywords
     const translationKey = hoverTranslationKeys[word];
     if (translationKey) {
-      return new vscode.Hover(
-        this.createKeywordHover(word, translationKey),
-        range
-      );
+      return new vscode.Hover(this.createKeywordHover(word, translationKey), range);
     }
 
     // Operatoren
@@ -47,10 +44,7 @@ export class HypnoScriptHoverProvider implements vscode.HoverProvider {
   /**
    * Erstellt Hover für Keywords
    */
-  private createKeywordHover(
-    word: string,
-    translationKey: string
-  ): vscode.MarkdownString {
+  private createKeywordHover(word: string, translationKey: string): vscode.MarkdownString {
     const md = new vscode.MarkdownString();
     md.isTrusted = true;
     md.supportHtml = true;
@@ -86,10 +80,7 @@ export class HypnoScriptHoverProvider implements vscode.HoverProvider {
     const md = new vscode.MarkdownString();
     md.isTrusted = true;
 
-    const operatorMap: Record<
-      string,
-      { standard: string; description: string }
-    > = {
+    const operatorMap: Record<string, { standard: string; description: string }> = {
       youAreFeelingVerySleepy: {
         standard: '==',
         description: 'Prüft auf Gleichheit',
@@ -124,13 +115,11 @@ export class HypnoScriptHoverProvider implements vscode.HoverProvider {
       },
       lucidFallback: {
         standard: '??',
-        description:
-          'Nullish Coalescing - Rückgabewert wenn links null/undefined',
+        description: 'Nullish Coalescing - Rückgabewert wenn links null/undefined',
       },
       dreamReach: {
         standard: '?.',
-        description:
-          'Optional Chaining - Sicherer Zugriff auf möglicherweise null-Werte',
+        description: 'Optional Chaining - Sicherer Zugriff auf möglicherweise null-Werte',
       },
     };
 
@@ -187,10 +176,7 @@ export class HypnoScriptHoverProvider implements vscode.HoverProvider {
   /**
    * Prüft, ob an einer Position ein Funktionsaufruf steht
    */
-  private isFunctionCall(
-    document: vscode.TextDocument,
-    position: vscode.Position
-  ): boolean {
+  private isFunctionCall(document: vscode.TextDocument, position: vscode.Position): boolean {
     const line = document.lineAt(position.line).text;
     const charAfter = line.charAt(position.character);
     return charAfter === '(';
@@ -203,30 +189,24 @@ export class HypnoScriptHoverProvider implements vscode.HoverProvider {
     const docs: Record<string, string> = {
       // Math functions
       hypnoticPi: '**Konstante:** π (Pi) ≈ 3.14159',
-      pendulumSin:
-        '**Trigonometrie:** Sinus-Funktion\n\n`pendulumSin(angle: number): number`',
-      pendulumCos:
-        '**Trigonometrie:** Kosinus-Funktion\n\n`pendulumCos(angle: number): number`',
+      pendulumSin: '**Trigonometrie:** Sinus-Funktion\n\n`pendulumSin(angle: number): number`',
+      pendulumCos: '**Trigonometrie:** Kosinus-Funktion\n\n`pendulumCos(angle: number): number`',
       power:
         '**Potenz:** Berechnet Basis^Exponent\n\n`power(base: number, exponent: number): number`',
-      squareRoot:
-        '**Wurzel:** Berechnet die Quadratwurzel\n\n`squareRoot(value: number): number`',
+      squareRoot: '**Wurzel:** Berechnet die Quadratwurzel\n\n`squareRoot(value: number): number`',
 
       // String functions
       trimEdges:
         '**String:** Entfernt Leerzeichen am Anfang und Ende\n\n`trimEdges(text: string): string`',
       measureDepth:
         '**String:** Gibt die Länge eines Strings zurück\n\n`measureDepth(text: string): number`',
-      toUpper:
-        '**String:** Konvertiert zu Großbuchstaben\n\n`toUpper(text: string): string`',
-      toLower:
-        '**String:** Konvertiert zu Kleinbuchstaben\n\n`toLower(text: string): string`',
+      toUpper: '**String:** Konvertiert zu Großbuchstaben\n\n`toUpper(text: string): string`',
+      toLower: '**String:** Konvertiert zu Kleinbuchstaben\n\n`toLower(text: string): string`',
 
       // Array functions
       fragmentMemory:
         '**Array:** Teilt einen String in ein Array\n\n`fragmentMemory(text: string, delimiter: string): Array<string>`',
-      vaultSize:
-        '**Array:** Gibt die Array-Länge zurück\n\n`vaultSize(array: Array<any>): number`',
+      vaultSize: '**Array:** Gibt die Array-Länge zurück\n\n`vaultSize(array: Array<any>): number`',
       sortMemories:
         '**Array:** Sortiert ein Array\n\n`sortMemories(array: Array<any>): Array<any>`',
 

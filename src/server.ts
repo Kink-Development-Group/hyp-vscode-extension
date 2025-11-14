@@ -13,10 +13,7 @@ import {
 import { logger } from './config';
 import { t } from './i18n';
 import { LocalTranslations } from './interfaces/localTranslations';
-import {
-  keywordCompletionList,
-  standardLibraryFunctions,
-} from './languageFacts';
+import { keywordCompletionList, standardLibraryFunctions } from './languageFacts';
 
 // Verbindung zum Editor herstellen
 const connection = createConnection(ProposedFeatures.all);
@@ -49,9 +46,7 @@ connection.onRequest('textDocument/diagnostic', async (params) => {
       ],
     };
   } catch (error) {
-    logger.error(
-      t('error_in_diagnostic_request' as keyof LocalTranslations) + error
-    );
+    logger.error(t('error_in_diagnostic_request' as keyof LocalTranslations) + error);
     throw error;
   }
 });

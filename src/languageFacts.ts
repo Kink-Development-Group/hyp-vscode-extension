@@ -62,13 +62,7 @@ export const coreKeywords = [
 /**
  * Type system keywords - Typ-System
  */
-export const typeKeywords = [
-  'number',
-  'string',
-  'boolean',
-  'trance',
-  'lucid',
-] as const;
+export const typeKeywords = ['number', 'string', 'boolean', 'trance', 'lucid'] as const;
 
 /**
  * Hypnotic operator synonyms - Hypnotische Operator-Synonyme
@@ -328,8 +322,7 @@ export const snippetTemplates: SnippetTemplate[] = [
   {
     label: 'Focus with entrance',
     detail: 'Complete program structure with entrance block',
-    documentation:
-      'Creates a full HypnoScript program with entrance initialization',
+    documentation: 'Creates a full HypnoScript program with entrance initialization',
     body: 'Focus {\n\tentrance {\n\t\t${1:// initialization}\n\t}\n\n\t${2:// main code}\n\n\tfinale {\n\t\t${3:// cleanup}\n\t}\n} Relax',
   },
   {
@@ -383,8 +376,7 @@ export const snippetTemplates: SnippetTemplate[] = [
   {
     label: 'entrain (pattern matching)',
     detail: 'Pattern matching expression',
-    documentation:
-      'Creates an entrain block for pattern matching with when clauses',
+    documentation: 'Creates an entrain block for pattern matching with when clauses',
     body: 'entrain ${1:value} {\n\twhen ${2:pattern1} => ${3:// action1};\n\twhen ${4:pattern2} => ${5:// action2};\n\totherwise => ${0:// default action};\n}',
   },
   {
@@ -396,8 +388,7 @@ export const snippetTemplates: SnippetTemplate[] = [
   {
     label: 'if (hypnotic)',
     detail: 'if-block using youAreFeelingVerySleepy',
-    documentation:
-      "Uses 'youAreFeelingVerySleepy' instead of '==' for comparisons",
+    documentation: "Uses 'youAreFeelingVerySleepy' instead of '==' for comparisons",
     body: 'if (${1:variable} youAreFeelingVerySleepy ${2:value}) {\n\t${3:// code}\n} else {\n\t${4:// alternative code}\n}',
   },
   {

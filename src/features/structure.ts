@@ -15,9 +15,7 @@ const tranceifyPattern = /^\s*tranceify\s+([A-Za-z_][A-Za-z0-9_]*)/;
 const focusPattern = /^\s*Focus\b/;
 const deepFocusPattern = /^\s*deepFocus\b/;
 
-export function collectDocumentSymbols(
-  document: TextDocument
-): DocumentSymbol[] {
+export function collectDocumentSymbols(document: TextDocument): DocumentSymbol[] {
   const symbols: DocumentSymbol[] = [];
   let line = 0;
 
@@ -50,10 +48,7 @@ export function collectDocumentSymbols(
         SymbolKind.Class,
         text.indexOf('{')
       );
-      sessionSymbol.symbol.children = collectNestedSymbols(
-        document,
-        sessionSymbol.symbol.range
-      );
+      sessionSymbol.symbol.children = collectNestedSymbols(document, sessionSymbol.symbol.range);
       symbols.push(sessionSymbol.symbol);
       line = sessionSymbol.endLine + 1;
       continue;
@@ -155,9 +150,7 @@ export function collectFoldingRanges(document: TextDocument): FoldingRange[] {
     }
     const blockEnd = findBlockEndPosition(document, openingBrace);
     if (blockEnd.line > line) {
-      ranges.push(
-        new FoldingRange(line, blockEnd.line, FoldingRangeKind.Region)
-      );
+      ranges.push(new FoldingRange(line, blockEnd.line, FoldingRangeKind.Region));
     }
     line = blockEnd.line;
     continue;
@@ -166,10 +159,7 @@ export function collectFoldingRanges(document: TextDocument): FoldingRange[] {
   return ranges;
 }
 
-function collectNestedSymbols(
-  document: TextDocument,
-  parentRange: Range
-): DocumentSymbol[] {
+function collectNestedSymbols(document: TextDocument, parentRange: Range): DocumentSymbol[] {
   const children: DocumentSymbol[] = [];
 
   let line = parentRange.start.line + 1;
@@ -229,11 +219,7 @@ function createBlockSymbol(
     new Position(line, Math.max(selectionStart, 0) + name.length)
   );
 
-  const openingBrace = locateOpeningBrace(
-    document,
-    line,
-    braceHintIndex >= 0 ? braceHintIndex : 0
-  );
+  const openingBrace = locateOpeningBrace(document, line, braceHintIndex >= 0 ? braceHintIndex : 0);
   const blockEnd = openingBrace
     ? findBlockEndPosition(document, openingBrace)
     : declarationLine.range.end;
@@ -245,13 +231,7 @@ function createBlockSymbol(
       : blockEnd
   );
 
-  const symbol = new DocumentSymbol(
-    name,
-    detail,
-    kind,
-    fullRange,
-    selectionRange
-  );
+  const symbol = new DocumentSymbol(name, detail, kind, fullRange, selectionRange);
 
   return { symbol, endLine: fullRange.end.line };
 }
@@ -272,10 +252,7 @@ function locateOpeningBrace(
   return undefined;
 }
 
-function findBlockEndPosition(
-  document: TextDocument,
-  openingBrace: Position
-): Position {
+function findBlockEndPosition(document: TextDocument, openingBrace: Position): Position {
   let balance = 0;
   for (let line = openingBrace.line; line < document.lineCount; line++) {
     const text = document.lineAt(line).text;

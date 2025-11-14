@@ -35,8 +35,7 @@ export class HypnoScriptDiagnosticProvider {
   };
 
   constructor() {
-    this.diagnosticCollection =
-      vscode.languages.createDiagnosticCollection('hypnoscript');
+    this.diagnosticCollection = vscode.languages.createDiagnosticCollection('hypnoscript');
   }
 
   /**
@@ -87,10 +86,7 @@ export class HypnoScriptDiagnosticProvider {
   /**
    * Prüft die Programmstruktur (Focus/Relax)
    */
-  private checkProgramStructure(
-    document: vscode.TextDocument,
-    text: string
-  ): vscode.Diagnostic[] {
+  private checkProgramStructure(document: vscode.TextDocument, text: string): vscode.Diagnostic[] {
     const diagnostics: vscode.Diagnostic[] = [];
 
     const focusMatches = Array.from(text.matchAll(/\bFocus\b/g));
@@ -126,7 +122,7 @@ export class HypnoScriptDiagnosticProvider {
     // Mehrfache Focus?
     if (focusMatches.length > 1) {
       focusMatches.slice(1).forEach((match) => {
-        const pos = document.positionAt(match.index!);
+        const pos = document.positionAt(match.index);
         const range = new vscode.Range(pos, pos.translate(0, 5));
         diagnostics.push(
           this.createDiagnostic(
@@ -142,7 +138,7 @@ export class HypnoScriptDiagnosticProvider {
     // Mehrfache Relax?
     if (relaxMatches.length > 1) {
       relaxMatches.slice(1).forEach((match) => {
-        const pos = document.positionAt(match.index!);
+        const pos = document.positionAt(match.index);
         const range = new vscode.Range(pos, pos.translate(0, 5));
         diagnostics.push(
           this.createDiagnostic(
@@ -157,8 +153,8 @@ export class HypnoScriptDiagnosticProvider {
 
     // Focus nach Relax?
     if (focusMatches.length > 0 && relaxMatches.length > 0) {
-      const focusPos = focusMatches[0].index!;
-      const relaxPos = relaxMatches[0].index!;
+      const focusPos = focusMatches[0].index;
+      const relaxPos = relaxMatches[0].index;
       if (focusPos > relaxPos) {
         const pos = document.positionAt(focusPos);
         const range = new vscode.Range(pos, pos.translate(0, 5));
@@ -181,10 +177,7 @@ export class HypnoScriptDiagnosticProvider {
   /**
    * Prüft Syntax-Fehler
    */
-  private checkSyntax(
-    document: vscode.TextDocument,
-    text: string
-  ): vscode.Diagnostic[] {
+  private checkSyntax(document: vscode.TextDocument, text: string): vscode.Diagnostic[] {
     const diagnostics: vscode.Diagnostic[] = [];
 
     // Unbalancierte Klammern
@@ -199,10 +192,7 @@ export class HypnoScriptDiagnosticProvider {
   /**
    * Prüft auf unbalancierte Klammern
    */
-  private checkBalancedBraces(
-    document: vscode.TextDocument,
-    text: string
-  ): vscode.Diagnostic[] {
+  private checkBalancedBraces(document: vscode.TextDocument, text: string): vscode.Diagnostic[] {
     const diagnostics: vscode.Diagnostic[] = [];
     const stack: Array<{ char: string; pos: number }> = [];
     const pairs: Record<string, string> = { '{': '}', '(': ')', '[': ']' };
@@ -263,9 +253,7 @@ export class HypnoScriptDiagnosticProvider {
   /**
    * Prüft auf fehlende Semicolons
    */
-  private checkMissingSemicolons(
-    document: vscode.TextDocument
-  ): vscode.Diagnostic[] {
+  private checkMissingSemicolons(document: vscode.TextDocument): vscode.Diagnostic[] {
     const diagnostics: vscode.Diagnostic[] = [];
     const statementKeywords = [
       'induce',
@@ -307,17 +295,8 @@ export class HypnoScriptDiagnosticProvider {
         new RegExp(`^\\s*${kw}\\b`).test(trimmed)
       );
 
-      if (
-        startsWithKeyword &&
-        !trimmed.endsWith(';') &&
-        !trimmed.endsWith('{')
-      ) {
-        const range = new vscode.Range(
-          i,
-          line.text.length,
-          i,
-          line.text.length
-        );
+      if (startsWithKeyword && !trimmed.endsWith(';') && !trimmed.endsWith('{')) {
+        const range = new vscode.Range(i, line.text.length, i, line.text.length);
         diagnostics.push(
           this.createDiagnostic(
             range,
@@ -337,10 +316,7 @@ export class HypnoScriptDiagnosticProvider {
   /**
    * Prüft semantische Fehler
    */
-  private checkSemantics(
-    document: vscode.TextDocument,
-    text: string
-  ): vscode.Diagnostic[] {
+  private checkSemantics(document: vscode.TextDocument, text: string): vscode.Diagnostic[] {
     const diagnostics: vscode.Diagnostic[] = [];
 
     // Variablen-Tracking
@@ -351,10 +327,7 @@ export class HypnoScriptDiagnosticProvider {
       if (!used.has(varName)) {
         positions.forEach((pos) => {
           const position = document.positionAt(pos);
-          const range = new vscode.Range(
-            position,
-            position.translate(0, varName.length)
-          );
+          const range = new vscode.Range(position, position.translate(0, varName.length));
           diagnostics.push(
             this.createDiagnostic(
               range,
@@ -381,8 +354,7 @@ export class HypnoScriptDiagnosticProvider {
     const used = new Set<string>();
 
     // Finde Variablendeklarationen
-    const declPattern =
-      /\b(induce|implant|embed|freeze|sharedTrance)\s+([a-zA-Z_][a-zA-Z0-9_]*)/g;
+    const declPattern = /\b(induce|implant|embed|freeze|sharedTrance)\s+([a-zA-Z_][a-zA-Z0-9_]*)/g;
     let match;
     while ((match = declPattern.exec(text)) !== null) {
       const varName = match[2];
@@ -414,10 +386,7 @@ export class HypnoScriptDiagnosticProvider {
   /**
    * Prüft Code-Style
    */
-  private checkStyle(
-    document: vscode.TextDocument,
-    text: string
-  ): vscode.Diagnostic[] {
+  private checkStyle(document: vscode.TextDocument, text: string): vscode.Diagnostic[] {
     const diagnostics: vscode.Diagnostic[] = [];
 
     // TODO: Implementiere Style-Checks

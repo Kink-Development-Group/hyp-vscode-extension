@@ -16,9 +16,7 @@ import {
  * Context-aware completion provider für HypnoScript
  * Implementiert intelligente Code-Vervollständigung basierend auf dem aktuellen Kontext
  */
-export class HypnoScriptCompletionProvider
-  implements vscode.CompletionItemProvider
-{
+export class HypnoScriptCompletionProvider implements vscode.CompletionItemProvider {
   /**
    * Hauptmethode für Code-Vervollständigung
    */
@@ -80,9 +78,7 @@ export class HypnoScriptCompletionProvider
   // ========== KONTEXT-ERKENNUNG ==========
 
   private isInVariableDeclaration(linePrefix: string): boolean {
-    return /\b(induce|implant|embed|freeze|sharedTrance)\s+\w*$/.test(
-      linePrefix
-    );
+    return /\b(induce|implant|embed|freeze|sharedTrance)\s+\w*$/.test(linePrefix);
   }
 
   private isInTypeAnnotation(linePrefix: string): boolean {
@@ -113,14 +109,9 @@ export class HypnoScriptCompletionProvider
    */
   private getTypeCompletions(): vscode.CompletionItem[] {
     return typeKeywords.map((type) => {
-      const item = new vscode.CompletionItem(
-        type,
-        vscode.CompletionItemKind.TypeParameter
-      );
+      const item = new vscode.CompletionItem(type, vscode.CompletionItemKind.TypeParameter);
       item.insertText = type;
-      item.documentation = new vscode.MarkdownString(
-        this.getTypeDocumentation(type)
-      );
+      item.documentation = new vscode.MarkdownString(this.getTypeDocumentation(type));
       return item;
     });
   }
@@ -130,14 +121,9 @@ export class HypnoScriptCompletionProvider
    */
   private getStatementKeywords(): vscode.CompletionItem[] {
     return coreKeywords.map((keyword) => {
-      const item = new vscode.CompletionItem(
-        keyword,
-        this.getKeywordKind(keyword)
-      );
+      const item = new vscode.CompletionItem(keyword, this.getKeywordKind(keyword));
       item.insertText = this.getKeywordSnippet(keyword);
-      item.documentation = new vscode.MarkdownString(
-        this.getKeywordDocumentation(keyword)
-      );
+      item.documentation = new vscode.MarkdownString(this.getKeywordDocumentation(keyword));
       item.sortText = this.getKeywordSortPriority(keyword);
       return item;
     });
@@ -148,14 +134,9 @@ export class HypnoScriptCompletionProvider
    */
   private getOperatorCompletions(): vscode.CompletionItem[] {
     return operatorSynonyms.map((operator) => {
-      const item = new vscode.CompletionItem(
-        operator,
-        vscode.CompletionItemKind.Operator
-      );
+      const item = new vscode.CompletionItem(operator, vscode.CompletionItemKind.Operator);
       item.insertText = operator;
-      item.documentation = new vscode.MarkdownString(
-        this.getOperatorDocumentation(operator)
-      );
+      item.documentation = new vscode.MarkdownString(this.getOperatorDocumentation(operator));
       item.detail = this.getOperatorDetail(operator);
       return item;
     });
@@ -165,18 +146,9 @@ export class HypnoScriptCompletionProvider
    * Class-Member-Keywords (expose, conceal, constructor)
    */
   private getClassMemberKeywords(): vscode.CompletionItem[] {
-    const keywords = [
-      'expose',
-      'conceal',
-      'dominant',
-      'constructor',
-      'suggestion',
-    ];
+    const keywords = ['expose', 'conceal', 'dominant', 'constructor', 'suggestion'];
     return keywords.map((keyword) => {
-      const item = new vscode.CompletionItem(
-        keyword,
-        vscode.CompletionItemKind.Keyword
-      );
+      const item = new vscode.CompletionItem(keyword, vscode.CompletionItemKind.Keyword);
       item.insertText = keyword;
       return item;
     });
@@ -185,28 +157,16 @@ export class HypnoScriptCompletionProvider
   /**
    * Standard-Library-Completions mit Kategorisierung
    */
-  private getStandardLibraryCompletions(
-    context?: string
-  ): vscode.CompletionItem[] {
+  private getStandardLibraryCompletions(context?: string): vscode.CompletionItem[] {
     const completions: vscode.CompletionItem[] = [];
 
     // Alle Standard-Library-Funktionen
     completions.push(...this.createFunctionCompletions(mathFunctions, 'Math'));
-    completions.push(
-      ...this.createFunctionCompletions(stringFunctions, 'String')
-    );
-    completions.push(
-      ...this.createFunctionCompletions(arrayFunctions, 'Array')
-    );
-    completions.push(
-      ...this.createFunctionCompletions(hypnoticFunctions, 'Hypnotic')
-    );
-    completions.push(
-      ...this.createFunctionCompletions(systemFunctions, 'System')
-    );
-    completions.push(
-      ...this.createFunctionCompletions(controlFlowHelpers, 'Control Flow')
-    );
+    completions.push(...this.createFunctionCompletions(stringFunctions, 'String'));
+    completions.push(...this.createFunctionCompletions(arrayFunctions, 'Array'));
+    completions.push(...this.createFunctionCompletions(hypnoticFunctions, 'Hypnotic'));
+    completions.push(...this.createFunctionCompletions(systemFunctions, 'System'));
+    completions.push(...this.createFunctionCompletions(controlFlowHelpers, 'Control Flow'));
 
     return completions;
   }
@@ -216,10 +176,7 @@ export class HypnoScriptCompletionProvider
    */
   private getAllKeywords(): vscode.CompletionItem[] {
     return [...coreKeywords, ...controlFlowHelpers].map((keyword) => {
-      const item = new vscode.CompletionItem(
-        keyword,
-        vscode.CompletionItemKind.Keyword
-      );
+      const item = new vscode.CompletionItem(keyword, vscode.CompletionItemKind.Keyword);
       item.sortText = `z_${keyword}`; // Niedrigere Priorität
       return item;
     });
@@ -235,15 +192,10 @@ export class HypnoScriptCompletionProvider
     category: string
   ): vscode.CompletionItem[] {
     return functions.map((func) => {
-      const item = new vscode.CompletionItem(
-        func,
-        vscode.CompletionItemKind.Function
-      );
+      const item = new vscode.CompletionItem(func, vscode.CompletionItemKind.Function);
       item.insertText = new vscode.SnippetString(`${func}($0)`);
       item.detail = `${category} - ${t('builtin_function_hint')}`;
-      item.documentation = new vscode.MarkdownString(
-        this.getFunctionDocumentation(func, category)
-      );
+      item.documentation = new vscode.MarkdownString(this.getFunctionDocumentation(func, category));
       item.sortText = `a_${func}`; // Höhere Priorität für Funktionen
       return item;
     });
@@ -286,9 +238,7 @@ export class HypnoScriptCompletionProvider
       tranceify: 'tranceify ${1:Name} {\n\t$0\n}',
     };
 
-    return snippets[keyword]
-      ? new vscode.SnippetString(snippets[keyword])
-      : keyword;
+    return snippets[keyword] ? new vscode.SnippetString(snippets[keyword]) : keyword;
   }
 
   /**
@@ -296,10 +246,15 @@ export class HypnoScriptCompletionProvider
    */
   private getKeywordSortPriority(keyword: string): string {
     // Wichtige Keywords zuerst
-    if (['Focus', 'Relax'].includes(keyword)) return 'aaa_' + keyword;
-    if (['entrance', 'finale'].includes(keyword)) return 'aab_' + keyword;
-    if (['if', 'else', 'while', 'loop'].includes(keyword))
+    if (['Focus', 'Relax'].includes(keyword)) {
+      return 'aaa_' + keyword;
+    }
+    if (['entrance', 'finale'].includes(keyword)) {
+      return 'aab_' + keyword;
+    }
+    if (['if', 'else', 'while', 'loop'].includes(keyword)) {
       return 'aac_' + keyword;
+    }
     return 'b_' + keyword;
   }
 
@@ -310,10 +265,8 @@ export class HypnoScriptCompletionProvider
       number: '**number** - Numerischer Typ für Ganzzahlen und Dezimalzahlen',
       string: '**string** - Text-Typ für Zeichenketten',
       boolean: '**boolean** - Wahrheitswert (true/false)',
-      trance:
-        '**trance** - Spezieller HypnoScript-Typ für bewusstseinserweiterte Werte',
-      lucid:
-        '**lucid** - Modifier für optionale/nullable Typen (z.B. `lucid string`)',
+      trance: '**trance** - Spezieller HypnoScript-Typ für bewusstseinserweiterte Werte',
+      lucid: '**lucid** - Modifier für optionale/nullable Typen (z.B. `lucid string`)',
     };
     return docs[type] || type;
   }
@@ -329,8 +282,7 @@ export class HypnoScriptCompletionProvider
       youCannotResist: 'Hypnotisches Synonym für `!=` (Ungleichheit)',
       lookAtTheWatch: 'Hypnotisches Synonym für `>` (Größer als)',
       fallUnderMySpell: 'Hypnotisches Synonym für `<` (Kleiner als)',
-      yourEyesAreGettingHeavy:
-        'Hypnotisches Synonym für `>=` (Größer oder gleich)',
+      yourEyesAreGettingHeavy: 'Hypnotisches Synonym für `>=` (Größer oder gleich)',
       goingDeeper: 'Hypnotisches Synonym für `<=` (Kleiner oder gleich)',
       underMyControl: 'Hypnotisches Synonym für `&&` (Logisches UND)',
       resistanceIsFutile: 'Hypnotisches Synonym für `||` (Logisches ODER)',

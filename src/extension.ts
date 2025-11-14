@@ -8,10 +8,7 @@ import {
 } from 'vscode-languageclient/node';
 import { config, logger } from './config';
 import { HypnoScriptCodeActionProvider } from './features/codeActions';
-import {
-  collectDocumentSymbols,
-  collectFoldingRanges,
-} from './features/structure';
+import { collectDocumentSymbols, collectFoldingRanges } from './features/structure';
 import { HypnoScriptFormatter, HypnoScriptRangeFormatter } from './formatter';
 import { setLocale, t } from './i18n';
 import {
@@ -33,40 +30,30 @@ export async function activate(context: vscode.ExtensionContext) {
     const locale = vscode.env.language || 'en';
     await setLocale(locale);
 
-    logger.info(
-      t('extension_activation') +
-        ` (Mode: ${config.environment}, Locale: ${locale})`
-    );
+    logger.info(t('extension_activation') + ` (Mode: ${config.environment}, Locale: ${locale})`);
 
     const serverModule = context.asAbsolutePath(path.join('out', 'server.js'));
 
     // ========== COMPLETION PROVIDERS ==========
 
     // Intelligente kontextbasierte Completion
-    const intelligentCompletionProvider =
-      vscode.languages.registerCompletionItemProvider(
-        'hypnoscript',
-        new HypnoScriptCompletionProvider(),
-        ...'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
-      );
+    const intelligentCompletionProvider = vscode.languages.registerCompletionItemProvider(
+      'hypnoscript',
+      new HypnoScriptCompletionProvider(),
+      ...'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+    );
 
     // Legacy Keyword Completion (als Fallback)
     const createKeywordCompletionItems = () =>
       keywordCompletionList.map((keyword) => {
-        const item = new vscode.CompletionItem(
-          keyword,
-          vscode.CompletionItemKind.Keyword
-        );
+        const item = new vscode.CompletionItem(keyword, vscode.CompletionItemKind.Keyword);
         item.insertText = `${keyword} `;
         return item;
       });
 
     const createStdLibCompletionItems = () =>
       standardLibraryFunctions.map((fn) => {
-        const item = new vscode.CompletionItem(
-          fn,
-          vscode.CompletionItemKind.Function
-        );
+        const item = new vscode.CompletionItem(fn, vscode.CompletionItemKind.Function);
         item.insertText = new vscode.SnippetString(`${fn}($0)`);
         item.detail = t('builtin_function_hint');
         item.documentation = new vscode.MarkdownString(
@@ -79,10 +66,7 @@ export async function activate(context: vscode.ExtensionContext) {
       'hypnoscript',
       {
         provideCompletionItems() {
-          return [
-            ...createKeywordCompletionItems(),
-            ...createStdLibCompletionItems(),
-          ];
+          return [...createKeywordCompletionItems(), ...createStdLibCompletionItems()];
         },
       },
       ...completionTriggerCharacters
@@ -90,23 +74,16 @@ export async function activate(context: vscode.ExtensionContext) {
 
     const buildSnippetItems = () =>
       snippetTemplates.map((template) => {
-        const item = new vscode.CompletionItem(
-          template.label,
-          vscode.CompletionItemKind.Snippet
-        );
+        const item = new vscode.CompletionItem(template.label, vscode.CompletionItemKind.Snippet);
         if (template.detailKey) {
           item.detail = t(template.detailKey);
         } else if (template.detail) {
           item.detail = template.detail;
         }
         if (template.documentationKey) {
-          item.documentation = new vscode.MarkdownString(
-            t(template.documentationKey)
-          );
+          item.documentation = new vscode.MarkdownString(t(template.documentationKey));
         } else if (template.documentation) {
-          item.documentation = new vscode.MarkdownString(
-            template.documentation
-          );
+          item.documentation = new vscode.MarkdownString(template.documentation);
         }
         item.insertText = new vscode.SnippetString(template.body);
         return item;
@@ -120,16 +97,15 @@ export async function activate(context: vscode.ExtensionContext) {
       )
     );
 
-    const structureCompletionProvider =
-      vscode.languages.registerCompletionItemProvider(
-        'hypnoscript',
-        {
-          provideCompletionItems() {
-            return buildSnippetItems();
-          },
+    const structureCompletionProvider = vscode.languages.registerCompletionItemProvider(
+      'hypnoscript',
+      {
+        provideCompletionItems() {
+          return buildSnippetItems();
         },
-        ...snippetTriggerCharacters
-      );
+      },
+      ...snippetTriggerCharacters
+    );
 
     // ========== HOVER PROVIDER ==========
 
@@ -140,39 +116,32 @@ export async function activate(context: vscode.ExtensionContext) {
     );
 
     // Legacy Hover Provider (als Fallback)
-    const hoverProvider = vscode.languages.registerHoverProvider(
-      'hypnoscript',
-      {
-        provideHover(document, position) {
-          const range = document.getWordRangeAtPosition(position);
-          if (!range) {
-            return;
-          }
-          const word = document.getText(range);
-          const translationKey = hoverTranslationKeys[word];
-          if (translationKey) {
-            return new vscode.Hover(
-              new vscode.MarkdownString(t(translationKey))
-            );
-          }
+    const hoverProvider = vscode.languages.registerHoverProvider('hypnoscript', {
+      provideHover(document, position) {
+        const range = document.getWordRangeAtPosition(position);
+        if (!range) {
           return;
-        },
-      }
-    );
+        }
+        const word = document.getText(range);
+        const translationKey = hoverTranslationKeys[word];
+        if (translationKey) {
+          return new vscode.Hover(new vscode.MarkdownString(t(translationKey)));
+        }
+        return;
+      },
+    });
 
     // ========== FORMATTERS ==========
 
-    const formatterProvider =
-      vscode.languages.registerDocumentFormattingEditProvider(
-        'hypnoscript',
-        new HypnoScriptFormatter()
-      );
+    const formatterProvider = vscode.languages.registerDocumentFormattingEditProvider(
+      'hypnoscript',
+      new HypnoScriptFormatter()
+    );
 
-    const rangeFormatterProvider =
-      vscode.languages.registerDocumentRangeFormattingEditProvider(
-        'hypnoscript',
-        new HypnoScriptRangeFormatter()
-      );
+    const rangeFormatterProvider = vscode.languages.registerDocumentRangeFormattingEditProvider(
+      'hypnoscript',
+      new HypnoScriptRangeFormatter()
+    );
 
     // ========== DIAGNOSTICS ==========
 
@@ -225,21 +194,17 @@ export async function activate(context: vscode.ExtensionContext) {
 
     // ========== DOCUMENT SYMBOLS & FOLDING ==========
 
-    const documentSymbolProvider =
-      vscode.languages.registerDocumentSymbolProvider('hypnoscript', {
-        provideDocumentSymbols(document) {
-          return collectDocumentSymbols(document);
-        },
-      });
+    const documentSymbolProvider = vscode.languages.registerDocumentSymbolProvider('hypnoscript', {
+      provideDocumentSymbols(document) {
+        return collectDocumentSymbols(document);
+      },
+    });
 
-    const foldingRangeProvider = vscode.languages.registerFoldingRangeProvider(
-      'hypnoscript',
-      {
-        provideFoldingRanges(document) {
-          return collectFoldingRanges(document);
-        },
-      }
-    );
+    const foldingRangeProvider = vscode.languages.registerFoldingRangeProvider('hypnoscript', {
+      provideFoldingRanges(document) {
+        return collectFoldingRanges(document);
+      },
+    });
 
     // ========== CODE ACTIONS ==========
 
@@ -247,8 +212,7 @@ export async function activate(context: vscode.ExtensionContext) {
       'hypnoscript',
       new HypnoScriptCodeActionProvider(),
       {
-        providedCodeActionKinds:
-          HypnoScriptCodeActionProvider.providedCodeActionKinds,
+        providedCodeActionKinds: HypnoScriptCodeActionProvider.providedCodeActionKinds,
       }
     );
 

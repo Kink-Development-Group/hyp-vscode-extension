@@ -11,18 +11,14 @@ import * as vscode from 'vscode';
  * - Zeilenumbrüche bei langen Zeilen
  * - Ausrichtung von Kommentaren
  */
-export class HypnoScriptFormatter
-  implements vscode.DocumentFormattingEditProvider
-{
+export class HypnoScriptFormatter implements vscode.DocumentFormattingEditProvider {
   private readonly indentSize: number = 4;
   private readonly useTabs: boolean = false;
 
   /**
    * Hauptmethode für Dokument-Formatierung
    */
-  async provideDocumentFormattingEdits(
-    document: vscode.TextDocument
-  ): Promise<vscode.TextEdit[]> {
+  async provideDocumentFormattingEdits(document: vscode.TextDocument): Promise<vscode.TextEdit[]> {
     const config = vscode.workspace.getConfiguration('hypnoscript');
     const formattedText = this.formatDocument(document);
 
@@ -230,9 +226,7 @@ export class HypnoScriptFormatter
 /**
  * Range-Formatter für ausgewählte Bereiche
  */
-export class HypnoScriptRangeFormatter
-  implements vscode.DocumentRangeFormattingEditProvider
-{
+export class HypnoScriptRangeFormatter implements vscode.DocumentRangeFormattingEditProvider {
   private formatter: HypnoScriptFormatter = new HypnoScriptFormatter();
 
   async provideDocumentRangeFormattingEdits(

@@ -5,9 +5,7 @@ import { t } from '../i18n';
  * HypnoScript Code Action Provider
  * Implementiert Quick-Fixes, Refactorings und Code-Suggestions
  */
-export class HypnoScriptCodeActionProvider
-  implements vscode.CodeActionProvider
-{
+export class HypnoScriptCodeActionProvider implements vscode.CodeActionProvider {
   public static readonly providedCodeActionKinds = [
     vscode.CodeActionKind.QuickFix,
     vscode.CodeActionKind.Refactor,
@@ -78,9 +76,7 @@ export class HypnoScriptCodeActionProvider
           break;
 
         case this.DIAGNOSTIC_CODES.UNUSED_VARIABLE:
-          actions.push(
-            this.createRemoveUnusedVariableFix(document, diagnostic)
-          );
+          actions.push(this.createRemoveUnusedVariableFix(document, diagnostic));
           break;
 
         case this.DIAGNOSTIC_CODES.MULTIPLE_FOCUS:
@@ -101,9 +97,7 @@ export class HypnoScriptCodeActionProvider
   /**
    * Quick-Fix: Fügt Focus/Relax um das Dokument hinzu
    */
-  private createFocusRelaxWrapperFix(
-    document: vscode.TextDocument
-  ): vscode.CodeAction {
+  private createFocusRelaxWrapperFix(document: vscode.TextDocument): vscode.CodeAction {
     const title = t('codeaction_focus_wrapper');
     const fix = new vscode.CodeAction(title, vscode.CodeActionKind.QuickFix);
     const edit = new vscode.WorkspaceEdit();
@@ -198,24 +192,18 @@ export class HypnoScriptCodeActionProvider
     if (!range.isEmpty) {
       actions.push(this.createExtractToSuggestionRefactoring(document, range));
       actions.push(this.createExtractToVariableRefactoring(document, range));
-      actions.push(
-        this.createConvertToHypnoticOperatorRefactoring(document, range)
-      );
+      actions.push(this.createConvertToHypnoticOperatorRefactoring(document, range));
     }
 
     // Refactoring am Cursor
     const cursorLine = document.lineAt(range.start.line).text;
 
     if (this.isSuggestionDeclaration(cursorLine)) {
-      actions.push(
-        this.createConvertToAsyncSuggestionRefactoring(document, range)
-      );
+      actions.push(this.createConvertToAsyncSuggestionRefactoring(document, range));
     }
 
     if (this.isStandardOperator(cursorLine)) {
-      actions.push(
-        this.createConvertToHypnoticSyntaxRefactoring(document, range)
-      );
+      actions.push(this.createConvertToHypnoticSyntaxRefactoring(document, range));
     }
 
     return actions;
@@ -229,10 +217,7 @@ export class HypnoScriptCodeActionProvider
     range: vscode.Range
   ): vscode.CodeAction {
     const title = 'Extract to suggestion';
-    const action = new vscode.CodeAction(
-      title,
-      vscode.CodeActionKind.RefactorExtract
-    );
+    const action = new vscode.CodeAction(title, vscode.CodeActionKind.RefactorExtract);
     const edit = new vscode.WorkspaceEdit();
 
     const selectedText = document.getText(range);
@@ -258,10 +243,7 @@ export class HypnoScriptCodeActionProvider
     range: vscode.Range
   ): vscode.CodeAction {
     const title = 'Extract to variable';
-    const action = new vscode.CodeAction(
-      title,
-      vscode.CodeActionKind.RefactorExtract
-    );
+    const action = new vscode.CodeAction(title, vscode.CodeActionKind.RefactorExtract);
     const edit = new vscode.WorkspaceEdit();
 
     const selectedText = document.getText(range);
@@ -269,11 +251,7 @@ export class HypnoScriptCodeActionProvider
 
     // Füge Variable vor der aktuellen Zeile ein
     const lineStart = new vscode.Position(range.start.line, 0);
-    edit.insert(
-      document.uri,
-      lineStart,
-      `induce ${varName} = ${selectedText};\n`
-    );
+    edit.insert(document.uri, lineStart, `induce ${varName} = ${selectedText};\n`);
 
     // Ersetze Ausdruck durch Variablennamen
     edit.replace(document.uri, range, varName);
@@ -290,10 +268,7 @@ export class HypnoScriptCodeActionProvider
     range: vscode.Range
   ): vscode.CodeAction {
     const title = 'Convert to hypnotic operator';
-    const action = new vscode.CodeAction(
-      title,
-      vscode.CodeActionKind.RefactorRewrite
-    );
+    const action = new vscode.CodeAction(title, vscode.CodeActionKind.RefactorRewrite);
     const edit = new vscode.WorkspaceEdit();
 
     const text = document.getText(range);
@@ -313,10 +288,7 @@ export class HypnoScriptCodeActionProvider
     range: vscode.Range
   ): vscode.CodeAction {
     const title = 'Convert to async suggestion (mesmerize)';
-    const action = new vscode.CodeAction(
-      title,
-      vscode.CodeActionKind.RefactorRewrite
-    );
+    const action = new vscode.CodeAction(title, vscode.CodeActionKind.RefactorRewrite);
     const edit = new vscode.WorkspaceEdit();
 
     const line = document.lineAt(range.start.line);
@@ -335,19 +307,13 @@ export class HypnoScriptCodeActionProvider
     range: vscode.Range
   ): vscode.CodeAction {
     const title = 'Convert to full hypnotic syntax';
-    const action = new vscode.CodeAction(
-      title,
-      vscode.CodeActionKind.RefactorRewrite
-    );
+    const action = new vscode.CodeAction(title, vscode.CodeActionKind.RefactorRewrite);
     const edit = new vscode.WorkspaceEdit();
 
     const text = document.getText();
     const converted = this.convertOperatorsToHypnotic(text);
 
-    const fullRange = new vscode.Range(
-      document.positionAt(0),
-      document.positionAt(text.length)
-    );
+    const fullRange = new vscode.Range(document.positionAt(0), document.positionAt(text.length));
     edit.replace(document.uri, fullRange, converted);
 
     action.edit = edit;
@@ -372,14 +338,9 @@ export class HypnoScriptCodeActionProvider
   /**
    * Source Action: Organisiert mindLink-Importe
    */
-  private createOrganizeImportsAction(
-    document: vscode.TextDocument
-  ): vscode.CodeAction {
+  private createOrganizeImportsAction(document: vscode.TextDocument): vscode.CodeAction {
     const title = 'Organize mindLink imports';
-    const action = new vscode.CodeAction(
-      title,
-      vscode.CodeActionKind.SourceOrganizeImports
-    );
+    const action = new vscode.CodeAction(title, vscode.CodeActionKind.SourceOrganizeImports);
 
     // TODO: Implementiere Import-Organisation
 
@@ -389,9 +350,7 @@ export class HypnoScriptCodeActionProvider
   /**
    * Source Action: Fügt entrance-Block hinzu
    */
-  private createAddEntranceBlockAction(
-    document: vscode.TextDocument
-  ): vscode.CodeAction {
+  private createAddEntranceBlockAction(document: vscode.TextDocument): vscode.CodeAction {
     const title = 'Add entrance block';
     const action = new vscode.CodeAction(title, vscode.CodeActionKind.Source);
     const edit = new vscode.WorkspaceEdit();
@@ -402,11 +361,7 @@ export class HypnoScriptCodeActionProvider
 
     if (focusMatch && focusMatch.index !== undefined) {
       const pos = document.positionAt(focusMatch.index + focusMatch[0].length);
-      edit.insert(
-        document.uri,
-        pos,
-        '\n    entrance {\n        // Initialization code\n    }\n'
-      );
+      edit.insert(document.uri, pos, '\n    entrance {\n        // Initialization code\n    }\n');
     }
 
     action.edit = edit;
@@ -416,9 +371,7 @@ export class HypnoScriptCodeActionProvider
   /**
    * Source Action: Fügt finale-Block hinzu
    */
-  private createAddFinaleBlockAction(
-    document: vscode.TextDocument
-  ): vscode.CodeAction {
+  private createAddFinaleBlockAction(document: vscode.TextDocument): vscode.CodeAction {
     const title = 'Add finale block';
     const action = new vscode.CodeAction(title, vscode.CodeActionKind.Source);
     const edit = new vscode.WorkspaceEdit();
@@ -429,11 +382,7 @@ export class HypnoScriptCodeActionProvider
 
     if (relaxMatch && relaxMatch.index !== undefined) {
       const pos = document.positionAt(relaxMatch.index);
-      edit.insert(
-        document.uri,
-        pos,
-        '\n    finale {\n        // Cleanup code\n    }\n'
-      );
+      edit.insert(document.uri, pos, '\n    finale {\n        // Cleanup code\n    }\n');
     }
 
     action.edit = edit;
@@ -445,10 +394,7 @@ export class HypnoScriptCodeActionProvider
   /**
    * Findet Einfügepunkt für neue Funktionsdefinition
    */
-  private findInsertionPoint(
-    document: vscode.TextDocument,
-    range: vscode.Range
-  ): vscode.Position {
+  private findInsertionPoint(document: vscode.TextDocument, range: vscode.Range): vscode.Position {
     // Suche rückwärts nach Funktionsdefinition oder Programmanfang
     for (let i = range.start.line; i >= 0; i--) {
       const line = document.lineAt(i).text;
