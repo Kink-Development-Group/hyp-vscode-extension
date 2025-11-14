@@ -23,8 +23,8 @@ export class HypnoScriptCompletionProvider implements vscode.CompletionItemProvi
   provideCompletionItems(
     document: vscode.TextDocument,
     position: vscode.Position,
-    token: vscode.CancellationToken,
-    context: vscode.CompletionContext
+    _token: vscode.CancellationToken,
+    _context: vscode.CompletionContext
   ): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList> {
     const lineText = document.lineAt(position.line).text;
     const linePrefix = lineText.substring(0, position.character);
@@ -69,7 +69,7 @@ export class HypnoScriptCompletionProvider implements vscode.CompletionItemProvi
    */
   resolveCompletionItem(
     item: vscode.CompletionItem,
-    token: vscode.CancellationToken
+    _token: vscode.CancellationToken
   ): vscode.ProviderResult<vscode.CompletionItem> {
     // Erweiterte Dokumentation für bestimmte Items
     return item;
@@ -157,7 +157,7 @@ export class HypnoScriptCompletionProvider implements vscode.CompletionItemProvi
   /**
    * Standard-Library-Completions mit Kategorisierung
    */
-  private getStandardLibraryCompletions(context?: string): vscode.CompletionItem[] {
+  private getStandardLibraryCompletions(_context?: string): vscode.CompletionItem[] {
     const completions: vscode.CompletionItem[] = [];
 
     // Alle Standard-Library-Funktionen

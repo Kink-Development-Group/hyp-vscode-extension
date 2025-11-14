@@ -1,6 +1,7 @@
 import assert from 'assert';
-import { i18n, t, setLocale } from '../i18n';
 import { config, logger } from '../config';
+import { setLocale, t } from '../i18n';
+import type { LocalTranslations } from '../interfaces/localTranslations';
 
 // Ersetze den bisherigen Test-Code durch umfassendere Unit Tests.
 async function runTests() {
@@ -20,7 +21,7 @@ async function runTests() {
   );
 
   // Test: Fallback-Mechanismus (nicht vorhandener Schlüssel)
-  const unknown = t('unknown_key' as any);
+  const unknown = t('unknown_key' as keyof LocalTranslations);
   assert(
     unknown === 'unknown_key',
     'Fallback: Unbekannter Schlüssel sollte als Schlüssel zurückgegeben werden'

@@ -1,5 +1,5 @@
-import * as path from 'path';
 import * as fs from 'fs/promises';
+import * as path from 'path';
 import { LocalTranslations } from './interfaces/localTranslations';
 
 // Neues Interface für locale.json Dateien:
@@ -22,7 +22,7 @@ export class I18n {
       const data = await fs.readFile(translationFile, 'utf8');
       return JSON.parse(data) as LocalTranslations;
     } catch (err) {
-      console.error(`Fehler beim Laden der Übersetzungen für ${locale}: ${err}`);
+      console.error(`Fehler beim Laden der Übersetzungen für ${locale}: ${String(err)}`);
       if (locale !== this.fallbackLocale) {
         return this.loadTranslations(this.fallbackLocale);
       }
@@ -54,7 +54,7 @@ export class I18n {
 export const i18n = new I18n('en');
 
 // Beim Modul-Laden Default-Locale vorladen:
-(async () => {
+void (async () => {
   await i18n.setLocale(i18n['fallbackLocale']);
 })();
 

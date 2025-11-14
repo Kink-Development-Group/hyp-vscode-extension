@@ -232,11 +232,11 @@ export async function activate(context: vscode.ExtensionContext) {
       codeActionProvider
     );
 
-    client.start();
+    void client.start();
 
     logger.info('HypnoScript extension fully activated');
   } catch (error) {
-    logger.error('Fehler bei der Extension-Aktivierung: ' + error);
+    logger.error('Fehler bei der Extension-Aktivierung: ' + String(error));
   }
 }
 

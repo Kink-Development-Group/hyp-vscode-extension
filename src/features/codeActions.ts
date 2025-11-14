@@ -29,7 +29,7 @@ export class HypnoScriptCodeActionProvider implements vscode.CodeActionProvider 
     document: vscode.TextDocument,
     range: vscode.Range | vscode.Selection,
     context: vscode.CodeActionContext,
-    token: vscode.CancellationToken
+    _token: vscode.CancellationToken
   ): vscode.ProviderResult<vscode.CodeAction[]> {
     const actions: vscode.CodeAction[] = [];
 
@@ -304,7 +304,7 @@ export class HypnoScriptCodeActionProvider implements vscode.CodeActionProvider 
    */
   private createConvertToHypnoticSyntaxRefactoring(
     document: vscode.TextDocument,
-    range: vscode.Range
+    _range: vscode.Range
   ): vscode.CodeAction {
     const title = 'Convert to full hypnotic syntax';
     const action = new vscode.CodeAction(title, vscode.CodeActionKind.RefactorRewrite);
@@ -338,7 +338,7 @@ export class HypnoScriptCodeActionProvider implements vscode.CodeActionProvider 
   /**
    * Source Action: Organisiert mindLink-Importe
    */
-  private createOrganizeImportsAction(document: vscode.TextDocument): vscode.CodeAction {
+  private createOrganizeImportsAction(_document: vscode.TextDocument): vscode.CodeAction {
     const title = 'Organize mindLink imports';
     const action = new vscode.CodeAction(title, vscode.CodeActionKind.SourceOrganizeImports);
 

@@ -18,8 +18,7 @@ export class HypnoScriptFormatter implements vscode.DocumentFormattingEditProvid
   /**
    * Hauptmethode für Dokument-Formatierung
    */
-  async provideDocumentFormattingEdits(document: vscode.TextDocument): Promise<vscode.TextEdit[]> {
-    const config = vscode.workspace.getConfiguration('hypnoscript');
+  provideDocumentFormattingEdits(document: vscode.TextDocument): vscode.TextEdit[] {
     const formattedText = this.formatDocument(document);
 
     const fullRange = new vscode.Range(
@@ -229,12 +228,12 @@ export class HypnoScriptFormatter implements vscode.DocumentFormattingEditProvid
 export class HypnoScriptRangeFormatter implements vscode.DocumentRangeFormattingEditProvider {
   private formatter: HypnoScriptFormatter = new HypnoScriptFormatter();
 
-  async provideDocumentRangeFormattingEdits(
+  provideDocumentRangeFormattingEdits(
     document: vscode.TextDocument,
-    range: vscode.Range,
-    options: vscode.FormattingOptions,
-    token: vscode.CancellationToken
-  ): Promise<vscode.TextEdit[]> {
+    _range: vscode.Range,
+    _options: vscode.FormattingOptions,
+    _token: vscode.CancellationToken
+  ): vscode.TextEdit[] {
     // Für Range-Formatierung verwenden wir vorerst die Dokument-Formatierung
     // TODO: Implementiere echte Range-Formatierung
     return this.formatter.provideDocumentFormattingEdits(document);

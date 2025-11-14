@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { t } from '../i18n';
+import type { LocalTranslations } from '../interfaces/localTranslations';
 import { hoverTranslationKeys } from '../languageFacts';
 
 /**
@@ -13,7 +14,7 @@ export class HypnoScriptHoverProvider implements vscode.HoverProvider {
   provideHover(
     document: vscode.TextDocument,
     position: vscode.Position,
-    token: vscode.CancellationToken
+    _token: vscode.CancellationToken
   ): vscode.ProviderResult<vscode.Hover> {
     const range = document.getWordRangeAtPosition(position);
     if (!range) {
@@ -49,7 +50,7 @@ export class HypnoScriptHoverProvider implements vscode.HoverProvider {
     md.isTrusted = true;
     md.supportHtml = true;
 
-    const translation = t(translationKey as any);
+    const translation = t(translationKey as keyof LocalTranslations);
     md.appendMarkdown(translation);
 
     // Zusätzliche Informationen basierend auf Keyword

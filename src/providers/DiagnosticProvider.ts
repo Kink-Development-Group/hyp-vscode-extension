@@ -218,8 +218,8 @@ export class HypnoScriptDiagnosticProvider {
             )
           );
         } else {
-          const last = stack.pop()!;
-          if (pairs[last.char] !== char) {
+          const last = stack.pop();
+          if (last && pairs[last.char] !== char) {
             const pos = document.positionAt(i);
             diagnostics.push(
               this.createDiagnostic(
@@ -361,15 +361,17 @@ export class HypnoScriptDiagnosticProvider {
       if (!defined.has(varName)) {
         defined.set(varName, []);
       }
-      defined.get(varName)!.push(match.index);
+      const indices = defined.get(varName);
+      if (indices) {
+        indices.push(match.index);
+      }
     }
 
     // Finde Variablenverwendungen (vereinfacht)
     defined.forEach((_, varName) => {
       const usePattern = new RegExp(`\\b${varName}\\b`, 'g');
-      let useMatch;
       let count = 0;
-      while ((useMatch = usePattern.exec(text)) !== null) {
+      while (usePattern.exec(text) !== null) {
         count++;
       }
       // Wenn mehr als einmal vorkommt (mehr als nur Deklaration), als verwendet markieren
@@ -386,7 +388,7 @@ export class HypnoScriptDiagnosticProvider {
   /**
    * Prüft Code-Style
    */
-  private checkStyle(document: vscode.TextDocument, text: string): vscode.Diagnostic[] {
+  private checkStyle(_document: vscode.TextDocument, _text: string): vscode.Diagnostic[] {
     const diagnostics: vscode.Diagnostic[] = [];
 
     // TODO: Implementiere Style-Checks
