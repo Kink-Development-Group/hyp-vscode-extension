@@ -13,7 +13,7 @@
       "patterns": [
         {
           "name": "keyword.control.hypnoscript",
-          "match": "\\b(Focus|Relax|if|else|while|loop|snap|sink|suggestion|awaken|call|induce|observe|trance|entrance|deepFocus|from|external|session|constructor|expose|conceal|dominant|drift|tranceify|mindLink|sharedTrance|imperative)\\b"
+          "match": "\\b(Focus|Relax|if|else|while|loop|snap|sink|suggestion|awaken|call|induce|observe|trance|entrance|finale|deepFocus|from|external|session|constructor|expose|conceal|dominant|drift|tranceify|mindLink|sharedTrance|imperative|freeze|whisper|oscillate|anchor|implant|trigger|command|repeatAction|repeatUntil|repeatWhile|delayedSuggestion|ifTranced|tryOrAwaken|ensureAwakening|sequentialTrance)\\b"
         }
       ]
     },
@@ -21,7 +21,7 @@
       "patterns": [
         {
           "name": "keyword.operator.hypnoscript",
-          "match": "\\b(youAreFeelingVerySleepy|lookAtTheWatch|fallUnderMySpell|==|!=|>=|<=|>|<|\\+|\\-|\\*|/|%)\\b"
+          "match": "\\b(youAreFeelingVerySleepy|youCannotResist|lookAtTheWatch|fallUnderMySpell|yourEyesAreGettingHeavy|goingDeeper|underMyControl|resistanceIsFutile|==|!=|>=|<=|>|<|\\+|\\-|\\*|/|%)\\b"
         }
       ]
     },

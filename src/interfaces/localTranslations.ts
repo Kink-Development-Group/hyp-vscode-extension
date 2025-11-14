@@ -9,6 +9,14 @@ export interface LocalTranslations {
   session: string;
   expose: string;
   conceal: string;
+  freeze: string;
+  whisper: string;
+  oscillate: string;
+  anchor: string;
+  implant: string;
+  trigger: string;
+  finale: string;
+  command: string;
   error_no_focus: string;
   error_no_relax: string;
   entrance: string;
@@ -29,10 +37,25 @@ export interface LocalTranslations {
   if: string;
   else: string;
   while: string;
+  repeatAction: string;
+  repeatUntil: string;
+  repeatWhile: string;
+  delayedSuggestion: string;
+  ifTranced: string;
+  tryOrAwaken: string;
+  ensureAwakening: string;
+  sequentialTrance: string;
   // Neue Schlüssel:
   error_unbalanced_braces: string;
   error_missing_semicolon: string;
+  error_focus_order: string;
+  error_multiple_focus: string;
+  error_multiple_relax: string;
   diagnostic_error_popup: string;
   diagnostic_solution_message: string;
   diagnostic_solution_button: string;
+  builtin_function_hint: string;
+  snippet_focus_relax: string;
+  snippet_trigger: string;
+  snippet_repeatAction: string;
 }
