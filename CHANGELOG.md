@@ -250,3 +250,15 @@ Getestet mit allen Beispieldateien:
 ### 🐛 Bugfixes & Verbesserungen
 
 - Fehler bei Release Pipeline behoben
+
+## [1.5.2] - 2025-11-14
+
+### 🐛 Bugfixes & Verbesserungen
+
+- Fehler bei Release Pipeline behoben
+
+## [1.5.3] - 2025-11-14
+
+### 🐛 Bugfixes & Verbesserungen
+
+- Fehler bei Release Pipeline behoben

@@ -31,12 +31,26 @@ jobs:
       - name: 📦 Package VSCode Extension
         run: npx vsce package
 
+      - name: 🔍 Check if Release Exists
+        id: check_release
+        run: |
+          if gh release view ${{ github.ref_name }} &>/dev/null; then
+            echo "release_exists=true" >> $GITHUB_OUTPUT
+            echo "ℹ️ Release already exists for ${{ github.ref_name }}"
+          else
+            echo "release_exists=false" >> $GITHUB_OUTPUT
+            echo "✅ No existing release found for ${{ github.ref_name }}"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: 🗂️ Upload Artifact to GitHub Releases
         uses: softprops/action-gh-release@v1
         with:
           files: "*.vsix"
           tag_name: ${{ github.ref }}
           body: "🚀 New release of HypnoScript Extension!"
+          fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
